@@ -1,0 +1,142 @@
+﻿<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta
+    name="description"
+    content="企业官网 Demo，展示公司简介、产品中心与联系方式，适合后续替换为正式内容。"
+  />
+  <title>企业官网 Demo</title>
+  <link rel="stylesheet" href="./styles.css" />
+  <script defer src="./site-data.js"></script>
+  <script defer src="./app.js"></script>
+</head>
+<body>
+  <div class="page">
+    <header class="site-header">
+      <div class="header-top">
+        <a class="brand" href="#home" aria-label="返回首页">
+          <img class="brand-logo" src="assets/logo.png" alt="公司Logo">
+          <span class="brand-text">
+            <strong data-company-name>深圳林益科技有限公司</strong>
+            <small data-company-english>LINYI TECHNOLOGY</small>
+          </span>
+        </a>
+
+        <div class="header-tools">
+          <a href="#home">网站首页</a>
+          <div class="hotline">
+            <span>服务热线</span>
+            <strong data-hotline>400-XXX-XXXX</strong>
+          </div>
+        </div>
+      </div>
+
+      <nav class="site-nav" aria-label="主导航">
+        <a class="is-active" href="#home">网站首页</a>
+        <a href="#about">公司简介</a>
+        <a href="#news">新闻动态</a>
+        <a href="#products">产品中心</a>
+        <a href="#environment">公司环境</a>
+        <a href="#contact">招贤纳士</a>
+        <a href="#contact">联系我们</a>
+      </nav>
+    </header>
+
+    <main class="page-main">
+      <section class="hero" id="home">
+        <div class="hero-copy">
+          <span class="hero-kicker" id="heroBadge">企业官网 Demo</span>
+          <span class="hero-company" data-company-name>深圳林益科技有限公司</span>
+          <h1 id="heroTitle">
+            <span id="heroTitleMain">追求精工品质</span>
+            <span id="heroTitleRight">铸造行业品牌</span>
+          </h1>
+          <p class="hero-english" id="heroSubtitle">SEIKO QUALITY CASTING INDUSTRY BRAND</p>
+          <p id="heroDesc">以优质的服务团队和优秀的产品，打造行业第一品牌。</p>
+
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="#products">查看产品</a>
+            <a class="btn btn-secondary" href="#contact">获取联系方式</a>
+          </div>
+        </div>
+
+        <div class="hero-visual" id="heroVisual" aria-label="品牌横幅展示">
+          <img class="hero-image" src="./assets/hero-banner.png" alt="品牌横幅" />
+        </div>
+
+        <button class="hero-nav-btn hero-nav-btn-prev" id="heroPrevBtn" type="button" aria-label="上一张横幅">‹</button>
+        <button class="hero-nav-btn hero-nav-btn-next" id="heroNextBtn" type="button" aria-label="下一张横幅">›</button>
+        <div class="hero-indicators" id="heroIndicators" aria-label="横幅切换"></div>
+      </section>
+
+      <section class="panel section-split" id="news">
+        <div class="section-column section-column-main">
+          <div class="news-heading">
+            <h2 class="news-title"><span class="news-title-lead">N</span>ews / 最新资讯</h2>
+            <a class="news-more" href="#news">VIEW MORE &raquo;</a>
+          </div>
+          <article class="featured-news" id="featuredNews"></article>
+          <div class="news-list" id="newsList"></div>
+        </div>
+
+        <aside class="section-column section-column-side" id="about">
+          <div class="news-heading about-heading">
+            <h2 class="news-title"><span class="news-title-lead">A</span>bout us / 关于我们</h2>
+          </div>
+          <div class="about-visual">
+            <span class="about-visual-badge">Brand</span>
+          </div>
+          <p class="about-text" id="aboutText"></p>
+        </aside>
+      </section>
+
+      <section class="panel" id="products">
+        <div class="news-heading section-heading-wide">
+          <h2 class="news-title"><span class="news-title-lead">P</span>roduct center / 产品中心</h2>
+        </div>
+        <div class="products-grid" id="productsGrid"></div>
+      </section>
+
+      <section class="panel" id="environment">
+        <div class="news-heading section-heading-wide">
+          <h2 class="news-title"><span class="news-title-lead">E</span>nvironment / 公司环境</h2>
+        </div>
+        <div class="environment-grid">
+          <article class="environment-card">
+            <img src="./assets/generated-environment/environment-1.png" alt="公司环境图1" loading="lazy" />
+          </article>
+          <article class="environment-card">
+            <img src="./assets/generated-environment/environment-2.png" alt="公司环境图2" loading="lazy" />
+          </article>
+          <article class="environment-card">
+            <img src="./assets/generated-environment/environment-3.png" alt="公司环境图3" loading="lazy" />
+          </article>
+          <article class="environment-card">
+            <img src="./assets/generated-environment/environment-4.png" alt="公司环境图4" loading="lazy" />
+          </article>
+        </div>
+      </section>
+
+      <section class="panel contact-panel" id="contact">
+        <div class="news-heading section-heading-wide">
+          <h2 class="news-title"><span class="news-title-lead">C</span>ontact us / 联系我们</h2>
+        </div>
+        <div class="contact-grid">
+          <div class="contact-list" id="contactList"></div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <strong data-company-name>深圳林益科技有限公司</strong>
+      <span>企业官网</span>
+    </footer>
+
+    <footer class="site-footer-minimal">
+      <p>© 2026 <span data-company-name>深圳林益科技有限公司</span> · All Rights Reserved</p>
+    </footer>
+  </div>
+</body>
+</html>

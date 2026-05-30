@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="700" viewBox="0 0 1200 700">
+  <defs>
+    <linearGradient id="hall" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#f7e2bf"/>
+      <stop offset="100%" stop-color="#c68f51"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="700" fill="#e6d1ae"/>
+  <polygon points="0,700 1200,700 700,180 500,180" fill="url(#hall)"/>
+  <polygon points="0,0 500,180 700,180 1200,0" fill="#f4dfbe"/>
+  <rect x="80" y="160" width="120" height="300" fill="#b9733a"/>
+  <rect x="1000" y="160" width="120" height="300" fill="#b9733a"/>
+  <rect x="80" y="490" width="120" height="160" fill="#9a6032"/>
+  <rect x="1000" y="490" width="120" height="160" fill="#9a6032"/>
+  <rect x="280" y="220" width="180" height="120" fill="#8fb5d9"/>
+  <rect x="740" y="220" width="180" height="120" fill="#d98f8f"/>
+  <rect x="240" y="380" width="200" height="120" fill="#9fd0ad"/>
+  <rect x="760" y="380" width="200" height="120" fill="#d9c58f"/>
+  <circle cx="420" cy="140" r="16" fill="#f9f0db"/>
+  <circle cx="600" cy="120" r="16" fill="#f9f0db"/>
+  <circle cx="780" cy="140" r="16" fill="#f9f0db"/>
+</svg>

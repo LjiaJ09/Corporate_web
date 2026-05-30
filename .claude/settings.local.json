@@ -1,0 +1,22 @@
+{
+  "permissions": {
+    "allow": [
+      "WebFetch(domain:www.163.com)",
+      "WebFetch(domain:36kr.com)",
+      "WebFetch(domain:news.sina.com.cn)",
+      "WebSearch",
+      "Bash(python *)",
+      "Bash(curl *)",
+      "Bash(netstat -ano)",
+      "Bash(netsh advfirewall *)",
+      "Bash(tasklist)",
+      "Bash(wmic process *)",
+      "Bash(powershell -c \"Get-Process -Id 74180 | Select-Object -ExpandProperty Path\")",
+      "Bash(python3 *)",
+      "Bash(node -c \"D:/pythonProject-all/Corporate_web/site-data.js\")",
+      "Bash(git init *)",
+      "Bash(git remote *)",
+      "Bash(git add *)"
+    ]
+  }
+}

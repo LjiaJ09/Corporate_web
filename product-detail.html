@@ -1,0 +1,744 @@
+﻿<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>产品详情</title>
+  <style>
+    :root {
+      --bg: #f7f8fa;
+      --card: #ffffff;
+      --line: #eaeef3;
+      --title: #1a2b3c;
+      --text: #5a6b7d;
+      --brand: #1481cf;
+      --brand-dark: #0c5f9c;
+      --muted: #94a3b5;
+      --accent: #ff8b00;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--title);
+      font-family: -apple-system, "PingFang SC", "Microsoft YaHei", sans-serif;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .wrap {
+      width: min(1200px, 100% - 48px);
+      margin: 32px auto 48px;
+    }
+
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      margin-bottom: 20px;
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 14px;
+      letter-spacing: 0.02em;
+      transition: color 0.2s;
+    }
+
+    .back-link:hover {
+      color: var(--brand);
+    }
+
+    .card {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 4px 24px rgba(0, 0, 0, 0.04), 0 1px 2px rgba(0, 0, 0, 0.02);
+    }
+
+    .main {
+      display: grid;
+      grid-template-columns: minmax(340px, 1.05fr) minmax(360px, 1fr);
+      gap: 0;
+    }
+
+    .gallery {
+      border-right: 1px solid var(--line);
+      padding: 24px;
+      background: #fcfdfe;
+    }
+
+    .main-image {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 4 / 3;
+      border: 1px solid var(--line);
+      background: #f5f8fb;
+      border-radius: 8px;
+      overflow: hidden;
+      display: grid;
+      place-items: center;
+    }
+
+    .main-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      opacity: 0;
+      transform: scale(1.015);
+      transition: opacity 0.4s ease, transform 0.4s ease;
+      user-select: none;
+    }
+
+    .main-image img.is-visible {
+      opacity: 1;
+      transform: scale(1);
+    }
+
+    .image-fallback {
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .gallery-nav {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      z-index: 3;
+      width: 36px;
+      height: 36px;
+      border: none;
+      border-radius: 50%;
+      background: rgba(10, 30, 50, 0.6);
+      color: #fff;
+      font-size: 18px;
+      line-height: 1;
+      cursor: pointer;
+      display: none;
+      backdrop-filter: blur(4px);
+      transition: background 0.2s;
+    }
+
+    .gallery-nav:hover {
+      background: rgba(10, 30, 50, 0.85);
+    }
+
+    .gallery-nav.prev {
+      left: 12px;
+    }
+
+    .gallery-nav.next {
+      right: 12px;
+    }
+
+    .main-image:hover .gallery-nav {
+      display: inline-grid;
+      place-items: center;
+    }
+
+    .thumbs {
+      margin-top: 14px;
+      display: grid;
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+      gap: 10px;
+    }
+
+    .thumb {
+      border: 2px solid transparent;
+      border-radius: 6px;
+      background: #fff;
+      padding: 0;
+      height: 68px;
+      cursor: pointer;
+      overflow: hidden;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+
+    .thumb:hover {
+      border-color: #c8d6e5;
+    }
+
+    .thumb img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .thumb.active {
+      border-color: var(--brand);
+      box-shadow: 0 0 0 2px rgba(20, 129, 207, 0.15);
+    }
+
+    .info {
+      padding: 28px;
+    }
+
+    .meta {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 16px;
+      border-bottom: 1px solid var(--line);
+      padding-bottom: 16px;
+      margin-bottom: 20px;
+    }
+
+    .title {
+      margin: 0;
+      font-size: 28px;
+      font-weight: 700;
+      line-height: 1.2;
+      letter-spacing: -0.01em;
+      color: var(--title);
+    }
+
+    .code {
+      color: var(--muted);
+      font-size: 13px;
+      white-space: nowrap;
+      font-family: "SF Mono", "Consolas", monospace;
+    }
+
+    .industry {
+      display: inline-flex;
+      align-items: center;
+      margin-bottom: 16px;
+      padding: 5px 12px;
+      border-radius: 6px;
+      background: linear-gradient(135deg, #edf5ff, #f0f7ff);
+      color: var(--brand);
+      font-size: 13px;
+      font-weight: 500;
+      letter-spacing: 0.02em;
+    }
+
+    .section {
+      margin-top: 22px;
+    }
+
+    .section h3 {
+      margin: 0 0 12px;
+      font-size: 16px;
+      font-weight: 600;
+      line-height: 1.3;
+      color: var(--title);
+      letter-spacing: 0.01em;
+    }
+
+    .summary {
+      margin: 0;
+      color: var(--text);
+      line-height: 1.85;
+      white-space: pre-line;
+      font-size: 14.5px;
+    }
+
+    .feature-list {
+      margin: 0;
+      padding-left: 20px;
+      display: grid;
+      gap: 8px;
+      color: var(--text);
+      font-size: 14px;
+      line-height: 1.7;
+    }
+
+    .feature-list li::marker {
+      color: var(--brand);
+    }
+
+    .variants {
+      margin-top: 0;
+      border-top: 1px solid var(--line);
+      padding: 28px;
+    }
+
+    .variants h3 {
+      margin: 0 0 18px;
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--title);
+      letter-spacing: -0.01em;
+    }
+
+    .variant-simple {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 13.5px;
+      color: var(--text);
+      background: #fff;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      overflow: hidden;
+    }
+
+    .variant-simple th,
+    .variant-simple td {
+      border-bottom: 1px solid var(--line);
+      padding: 11px 14px;
+      text-align: left;
+      vertical-align: top;
+      white-space: pre-line;
+      line-height: 1.6;
+    }
+
+    .variant-simple tr:last-child td {
+      border-bottom: none;
+    }
+
+    .variant-simple th {
+      background: #f8fafc;
+      color: var(--title);
+      font-weight: 600;
+      font-size: 13px;
+      letter-spacing: 0.02em;
+    }
+
+    .variant-block {
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      background: #fff;
+      overflow: hidden;
+      margin-top: 18px;
+      box-shadow: 0 2px 12px rgba(0, 0, 0, 0.03);
+      transition: box-shadow 0.2s;
+    }
+
+    .variant-block:hover {
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+    }
+
+    .variant-title {
+      margin: 0;
+      padding: 16px 20px;
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--title);
+      background: #f8fafc;
+      border-left: 3px solid var(--brand);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .group-table {
+      width: 100%;
+      border-collapse: collapse;
+      table-layout: fixed;
+      font-size: 13.5px;
+      color: var(--text);
+    }
+
+    .group-table th,
+    .group-table td {
+      border-bottom: 1px solid var(--line);
+      padding: 10px 14px;
+      text-align: left;
+      vertical-align: top;
+      white-space: pre-line;
+      line-height: 1.6;
+    }
+
+    .group-table tr:last-child td {
+      border-bottom: none;
+    }
+
+    .group-table th {
+      width: 28%;
+      background: #fafbfd;
+      color: var(--title);
+      font-weight: 600;
+      font-size: 13px;
+    }
+
+    .not-found {
+      border: 1px solid var(--line);
+      background: #fff;
+      padding: 48px 24px;
+      text-align: center;
+      color: var(--muted);
+      border-radius: 12px;
+      font-size: 15px;
+    }
+
+    @media (max-width: 980px) {
+      .main {
+        grid-template-columns: 1fr;
+      }
+
+      .gallery {
+        border-right: none;
+        border-bottom: 1px solid var(--line);
+      }
+
+      .title {
+        font-size: 24px;
+      }
+
+      .thumbs {
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+      }
+
+      .main-image:hover .gallery-nav {
+        display: inline-grid;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .wrap {
+        width: calc(100% - 24px);
+        margin-top: 16px;
+        margin-bottom: 32px;
+      }
+
+      .info {
+        padding: 20px;
+      }
+
+      .variants {
+        padding: 20px;
+      }
+
+      .meta {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 8px;
+      }
+
+      .title {
+        font-size: 22px;
+      }
+
+      .thumbs {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+    }
+  </style>
+  <script defer src="./site-data.js"></script>
+  <script defer src="./product-detail-data.js"></script>
+</head>
+<body>
+  <main class="wrap">
+    <a class="back-link" href="./index.html#products">← 返回产品中心</a>
+    <section id="detailRoot"></section>
+  </main>
+
+  <script>
+    (function () {
+      function getCode() {
+        var params = new URLSearchParams(window.location.search);
+        return params.get("code");
+      }
+
+      function createElement(tag, className, text) {
+        var node = document.createElement(tag);
+        if (className) {
+          node.className = className;
+        }
+        if (typeof text === "string") {
+          node.textContent = text;
+        }
+        return node;
+      }
+
+      function buildGallery(images, productName) {
+        var gallery = createElement("section", "gallery");
+        var mainImage = createElement("div", "main-image");
+        var image = document.createElement("img");
+        var thumbs = createElement("div", "thumbs");
+        var prev = createElement("button", "gallery-nav prev", "‹");
+        var next = createElement("button", "gallery-nav next", "›");
+        var index = 0;
+        var buttons = [];
+
+        prev.type = "button";
+        next.type = "button";
+        prev.setAttribute("aria-label", "上一张");
+        next.setAttribute("aria-label", "下一张");
+
+        function renderMain(nextIndex) {
+          if (images.length === 0) {
+            return;
+          }
+
+          index = nextIndex;
+          image.classList.remove("is-visible");
+
+          window.setTimeout(function () {
+            image.src = images[index];
+            image.alt = productName + " 图片 " + (index + 1);
+            image.classList.add("is-visible");
+          }, 100);
+
+          buttons.forEach(function (button, buttonIndex) {
+            button.classList.toggle("active", buttonIndex === index);
+          });
+        }
+
+        if (!images || images.length === 0) {
+          mainImage.appendChild(createElement("div", "image-fallback", "暂无产品图片"));
+          gallery.appendChild(mainImage);
+          return gallery;
+        }
+
+        image.loading = "lazy";
+        image.draggable = false;
+        image.addEventListener("load", function () {
+          image.classList.add("is-visible");
+        });
+        image.addEventListener("error", function () {
+          image.classList.remove("is-visible");
+          image.removeAttribute("src");
+          mainImage.innerHTML = "";
+          mainImage.appendChild(createElement("div", "image-fallback", "图片加载失败"));
+        });
+
+        if (images.length > 1) {
+          prev.addEventListener("click", function () {
+            var nextIndex = index - 1;
+            if (nextIndex < 0) {
+              nextIndex = images.length - 1;
+            }
+            renderMain(nextIndex);
+          });
+
+          next.addEventListener("click", function () {
+            var nextIndex = index + 1;
+            if (nextIndex >= images.length) {
+              nextIndex = 0;
+            }
+            renderMain(nextIndex);
+          });
+
+          mainImage.appendChild(prev);
+          mainImage.appendChild(next);
+        }
+
+        mainImage.appendChild(image);
+        gallery.appendChild(mainImage);
+
+        images.forEach(function (src, i) {
+          var thumb = createElement("button", "thumb", "");
+          var thumbImage = document.createElement("img");
+
+          thumb.type = "button";
+          thumbImage.src = src;
+          thumbImage.alt = productName + " 缩略图 " + (i + 1);
+          thumbImage.loading = "lazy";
+          thumbImage.addEventListener("error", function () {
+            thumb.disabled = true;
+          });
+          thumb.appendChild(thumbImage);
+          thumb.addEventListener("click", function () {
+            renderMain(i);
+          });
+
+          buttons.push(thumb);
+          thumbs.appendChild(thumb);
+        });
+
+        if (images.length > 1) {
+          gallery.appendChild(thumbs);
+        }
+
+        renderMain(0);
+        return gallery;
+      }
+
+      function buildInfo(detailProduct, summaryText) {
+        var info = createElement("section", "info");
+        var meta = createElement("div", "meta");
+        var title = createElement("h1", "title", detailProduct.name);
+        var code = createElement("span", "code", "产品编号：" + detailProduct.code);
+        var industry = createElement("span", "industry", detailProduct.industry || "未分类");
+
+        meta.appendChild(title);
+        meta.appendChild(code);
+        info.appendChild(meta);
+        info.appendChild(industry);
+
+        if (summaryText) {
+          var summarySection = createElement("section", "section");
+          summarySection.appendChild(createElement("h3", "", "产品概述"));
+          summarySection.appendChild(createElement("p", "summary", summaryText));
+          info.appendChild(summarySection);
+        }
+
+        if (detailProduct.coreFeatures && detailProduct.coreFeatures.length > 0) {
+          var featureSection = createElement("section", "section");
+          var featureList = createElement("ul", "feature-list");
+
+          featureSection.appendChild(createElement("h3", "", "核心参数"));
+
+          detailProduct.coreFeatures.forEach(function (feature) {
+            featureList.appendChild(createElement("li", "", feature));
+          });
+
+          featureSection.appendChild(featureList);
+          info.appendChild(featureSection);
+        }
+
+        return info;
+      }
+
+      function buildSimpleVariants(rows) {
+        var table = createElement("table", "variant-simple");
+        var thead = document.createElement("thead");
+        var tbody = document.createElement("tbody");
+        var headRow = document.createElement("tr");
+        var visibleRows = rows.filter(function (row) {
+          return row && row.model && row.model !== "车型";
+        });
+
+        ["型号", "配置", "配件信息", "装柜信息"].forEach(function (title) {
+          headRow.appendChild(createElement("th", "", title));
+        });
+
+        thead.appendChild(headRow);
+        table.appendChild(thead);
+
+        visibleRows.forEach(function (row) {
+          var tr = document.createElement("tr");
+          var noteText = row.note_raw || "";
+          var accessories = noteText;
+          var shipping = "-";
+
+          if (noteText.includes("40尺")) {
+            var parts = noteText.split(/(?=40尺)/);
+            accessories = parts[0].replace(/[、\s]+$/, '') || "-";
+            shipping = parts[1].trim() || "-";
+          } else if (noteText === "-" || noteText === "") {
+            accessories = "-";
+          }
+
+          tr.appendChild(createElement("td", "", row.model || "-"));
+          tr.appendChild(createElement("td", "", row.config_raw || "-"));
+          tr.appendChild(createElement("td", "", accessories));
+          tr.appendChild(createElement("td", "", shipping));
+          tbody.appendChild(tr);
+        });
+
+        table.appendChild(tbody);
+        return table;
+      }
+
+      function buildStructuredVariant(variantItem) {
+        var block = createElement("article", "variant-block");
+        var title = createElement("h4", "variant-title", variantItem.variant || "规格");
+        var params = variantItem.params || {};
+
+        block.appendChild(title);
+
+        Object.keys(params).forEach(function (groupKey) {
+          var table = createElement("table", "group-table");
+          var groupHead = document.createElement("tr");
+          var headCell = createElement("th", "", groupKey);
+          var headValue = createElement("th", "", "参数值");
+
+          groupHead.appendChild(headCell);
+          groupHead.appendChild(headValue);
+          table.appendChild(groupHead);
+
+          Object.keys(params[groupKey] || {}).forEach(function (itemKey) {
+            var row = document.createElement("tr");
+            var keyCell = createElement("td", "", itemKey);
+            var valueCell = createElement("td", "", String(params[groupKey][itemKey]));
+
+            row.appendChild(keyCell);
+            row.appendChild(valueCell);
+            table.appendChild(row);
+          });
+
+          block.appendChild(table);
+        });
+
+        return block;
+      }
+
+      function buildVariants(variants) {
+        if (!variants || variants.length === 0) {
+          return null;
+        }
+
+        var section = createElement("section", "variants");
+        var isSimple = variants.some(function (item) {
+          return Object.prototype.hasOwnProperty.call(item, "model");
+        });
+
+        section.appendChild(createElement("h3", "", "详细规格"));
+
+        if (isSimple) {
+          section.appendChild(buildSimpleVariants(variants));
+          return section;
+        }
+
+        variants.forEach(function (variantItem) {
+          section.appendChild(buildStructuredVariant(variantItem));
+        });
+
+        return section;
+      }
+
+      function renderNotFound(root) {
+        var box = createElement("div", "not-found", "未找到对应产品，请返回产品中心重新选择。");
+        root.innerHTML = "";
+        root.appendChild(box);
+      }
+
+      function init() {
+        var root = document.getElementById("detailRoot");
+        var code = getCode();
+        var detailData = window.PRODUCT_DETAIL_DATA;
+        var siteData = window.SITE_DATA;
+        var detailProduct = null;
+        var summaryProduct = null;
+        var container = null;
+        var main = null;
+        var variants = null;
+
+        if (!root) {
+          return;
+        }
+
+        if (!detailData || !Array.isArray(detailData.products) || !code) {
+          renderNotFound(root);
+          return;
+        }
+
+        detailProduct = detailData.products.find(function (item) {
+          return item.code === code;
+        });
+
+        if (!detailProduct) {
+          renderNotFound(root);
+          return;
+        }
+
+        if (siteData && Array.isArray(siteData.products)) {
+          summaryProduct = siteData.products.find(function (item) {
+            return item.code === code;
+          });
+        }
+
+        container = createElement("article", "card");
+        main = createElement("section", "main");
+
+        main.appendChild(buildGallery(detailProduct.images || [], detailProduct.name));
+        main.appendChild(buildInfo(detailProduct, summaryProduct ? summaryProduct.text : ""));
+        container.appendChild(main);
+
+        variants = buildVariants(detailProduct.variants || []);
+        if (variants) {
+          container.appendChild(variants);
+        }
+
+        root.innerHTML = "";
+        root.appendChild(container);
+      }
+
+      document.addEventListener("DOMContentLoaded", init);
+    })();
+  </script>
+</body>
+</html>
