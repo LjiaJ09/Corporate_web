@@ -59,27 +59,27 @@
     }
 
     .main {
-      display: grid;
-      grid-template-columns: minmax(340px, 1.05fr) minmax(360px, 1fr);
-      gap: 0;
+      display: block;
     }
 
     .gallery {
-      border-right: 1px solid var(--line);
-      padding: 24px;
+      padding: 28px 32px 24px;
+      border-bottom: 1px solid var(--line);
       background: #fcfdfe;
     }
 
     .main-image {
       position: relative;
-      width: 100%;
+      width: min(100%, 860px);
+      margin: 0 auto;
       aspect-ratio: 4 / 3;
       border: 1px solid var(--line);
       background: #f5f8fb;
-      border-radius: 8px;
+      border-radius: 12px;
       overflow: hidden;
       display: grid;
       place-items: center;
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.6);
     }
 
     .main-image img {
@@ -99,7 +99,9 @@
 
     .image-fallback {
       color: var(--muted);
-      font-size: 14px;
+      font-size: 15px;
+      text-align: center;
+      padding: 0 20px;
     }
 
     .gallery-nav {
@@ -138,33 +140,172 @@
       place-items: center;
     }
 
-    .thumbs {
-      margin-top: 14px;
-      display: grid;
-      grid-template-columns: repeat(5, minmax(0, 1fr));
-      gap: 10px;
+    .gallery-caption {
+      margin-top: 18px;
+      text-align: center;
+    }
+
+    .gallery-product {
+      font-size: 16px;
+      font-weight: 600;
+      color: var(--title);
+      line-height: 1.5;
+    }
+
+    .gallery-model {
+      min-height: 24px;
+      margin-top: 4px;
+      color: var(--text);
+      font-size: 14px;
+      line-height: 1.6;
+    }
+
+    .thumbs-shell {
+      --thumb-width: 108px;
+      --thumb-gap: 12px;
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-top: 18px;
+      width: min(100%, calc(var(--thumb-width) * 5 + var(--thumb-gap) * 4 + 108px));
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .thumbs-shell.is-scrollable {
+      padding: 0 54px;
+    }
+
+    .thumbs-shell.is-scrollable::before,
+    .thumbs-shell.is-scrollable::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      width: 96px;
+      z-index: 1;
+      pointer-events: none;
+    }
+
+    .thumbs-shell.is-scrollable::before {
+      left: 0;
+      background:
+        linear-gradient(90deg, rgba(252, 253, 254, 0.98) 0%, rgba(252, 253, 254, 0.92) 28%, rgba(252, 253, 254, 0.62) 68%, rgba(252, 253, 254, 0) 100%);
+    }
+
+    .thumbs-shell.is-scrollable::after {
+      right: 0;
+      background:
+        linear-gradient(270deg, rgba(252, 253, 254, 0.98) 0%, rgba(252, 253, 254, 0.92) 28%, rgba(252, 253, 254, 0.62) 68%, rgba(252, 253, 254, 0) 100%);
+    }
+
+    .thumbs-viewport {
+      overflow-x: auto;
+      overflow-y: hidden;
+      width: min(100%, calc(var(--thumb-width) * 5 + var(--thumb-gap) * 4));
+      scroll-behavior: smooth;
+      scrollbar-width: none;
+      -ms-overflow-style: none;
+      touch-action: pan-x;
+    }
+
+    .thumbs-shell.is-static .thumbs-viewport {
+      width: auto;
+      max-width: 100%;
+    }
+
+    .thumbs-viewport::-webkit-scrollbar {
+      display: none;
+    }
+
+    .thumbs-track {
+      display: flex;
+      gap: var(--thumb-gap);
+      width: max-content;
+      margin: 0 auto;
+      padding: 4px 0;
+    }
+
+    .thumb-hotspot {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      width: 72px;
+      border: none;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      color: rgba(26, 43, 60, 0.72);
+      font-size: 24px;
+      font-weight: 700;
+      cursor: pointer;
+      z-index: 3;
+      background: transparent;
+      transition: color 0.2s, opacity 0.2s, transform 0.2s;
+      opacity: 0.88;
+    }
+
+    .thumb-hotspot:hover {
+      color: var(--brand);
+      opacity: 1;
+      transform: scale(1.06);
+    }
+
+    .thumbs-shell.is-scrollable .thumb-hotspot {
+      display: flex;
+    }
+
+    .thumb-hotspot.left {
+      left: 0;
+    }
+
+    .thumb-hotspot.right {
+      right: 0;
     }
 
     .thumb {
+      width: 108px;
+      min-width: 108px;
       border: 2px solid transparent;
-      border-radius: 6px;
+      border-radius: 10px;
       background: #fff;
       padding: 0;
-      height: 68px;
       cursor: pointer;
       overflow: hidden;
       transition: border-color 0.2s, box-shadow 0.2s;
+      box-shadow: 0 2px 12px rgba(15, 32, 55, 0.04);
     }
 
     .thumb:hover {
       border-color: #c8d6e5;
     }
 
+    .thumb-frame {
+      display: block;
+      width: 100%;
+      height: 72px;
+      overflow: hidden;
+      background: #f7f9fc;
+    }
+
     .thumb img {
       width: 100%;
       height: 100%;
-      object-fit: cover;
+      object-fit: contain;
       display: block;
+    }
+
+    .thumb-label {
+      display: block;
+      padding: 8px 8px 10px;
+      color: var(--text);
+      font-size: 12px;
+      line-height: 1.4;
+      text-align: center;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
 
     .thumb.active {
@@ -173,26 +314,35 @@
     }
 
     .info {
-      padding: 28px;
+      padding: 28px 32px 32px;
     }
 
     .meta {
-      display: flex;
-      align-items: flex-end;
-      justify-content: space-between;
-      gap: 16px;
+      display: grid;
+      gap: 12px;
       border-bottom: 1px solid var(--line);
-      padding-bottom: 16px;
+      padding-bottom: 18px;
       margin-bottom: 20px;
     }
 
     .title {
       margin: 0;
-      font-size: 28px;
+      font-size: 30px;
       font-weight: 700;
       line-height: 1.2;
       letter-spacing: -0.01em;
       color: var(--title);
+    }
+
+    .meta-top {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 16px;
+    }
+
+    .title-block {
+      min-width: 0;
     }
 
     .code {
@@ -213,6 +363,19 @@
       font-size: 13px;
       font-weight: 500;
       letter-spacing: 0.02em;
+    }
+
+    .model-chip {
+      display: inline-flex;
+      align-items: center;
+      min-height: 34px;
+      padding: 7px 14px;
+      border-radius: 999px;
+      background: #fff4e6;
+      color: #a85b00;
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 0.01em;
     }
 
     .section {
@@ -250,21 +413,7 @@
       color: var(--brand);
     }
 
-    .variants {
-      margin-top: 0;
-      border-top: 1px solid var(--line);
-      padding: 28px;
-    }
-
-    .variants h3 {
-      margin: 0 0 18px;
-      font-size: 18px;
-      font-weight: 700;
-      color: var(--title);
-      letter-spacing: -0.01em;
-    }
-
-    .variant-simple {
+    .detail-table {
       width: 100%;
       border-collapse: collapse;
       font-size: 13.5px;
@@ -275,21 +424,23 @@
       overflow: hidden;
     }
 
-    .variant-simple th,
-    .variant-simple td {
+    .detail-table th,
+    .detail-table td {
       border-bottom: 1px solid var(--line);
-      padding: 11px 14px;
+      padding: 12px 14px;
       text-align: left;
       vertical-align: top;
+      line-height: 1.7;
       white-space: pre-line;
-      line-height: 1.6;
     }
 
-    .variant-simple tr:last-child td {
+    .detail-table tr:last-child th,
+    .detail-table tr:last-child td {
       border-bottom: none;
     }
 
-    .variant-simple th {
+    .detail-table th {
+      width: 22%;
       background: #f8fafc;
       color: var(--title);
       font-weight: 600;
@@ -363,21 +514,16 @@
     }
 
     @media (max-width: 980px) {
-      .main {
-        grid-template-columns: 1fr;
+      .gallery {
+        padding: 24px;
       }
 
-      .gallery {
-        border-right: none;
-        border-bottom: 1px solid var(--line);
+      .info {
+        padding: 24px;
       }
 
       .title {
-        font-size: 24px;
-      }
-
-      .thumbs {
-        grid-template-columns: repeat(4, minmax(0, 1fr));
+        font-size: 26px;
       }
 
       .main-image:hover .gallery-nav {
@@ -392,26 +538,49 @@
         margin-bottom: 32px;
       }
 
+      .gallery {
+        padding: 18px;
+      }
+
       .info {
         padding: 20px;
       }
 
-      .variants {
-        padding: 20px;
+      .meta {
+        gap: 8px;
       }
 
-      .meta {
-        align-items: flex-start;
+      .meta-top {
         flex-direction: column;
-        gap: 8px;
       }
 
       .title {
         font-size: 22px;
       }
 
-      .thumbs {
-        grid-template-columns: repeat(3, minmax(0, 1fr));
+      .thumbs-shell {
+        width: 100%;
+      }
+
+      .thumbs-shell.is-scrollable {
+        padding: 0 38px;
+      }
+
+      .thumbs-viewport {
+        width: min(100%, calc(3 * var(--thumb-width) + var(--thumb-gap) * 2));
+      }
+
+      .thumb {
+        width: 96px;
+        min-width: 96px;
+      }
+
+      .thumb-frame {
+        height: 66px;
+      }
+
+      .thumb-hotspot {
+        width: 52px;
       }
     }
   </style>
@@ -442,242 +611,399 @@
         return node;
       }
 
-      function buildGallery(images, productName) {
-        var gallery = createElement("section", "gallery");
-        var mainImage = createElement("div", "main-image");
-        var image = document.createElement("img");
-        var thumbs = createElement("div", "thumbs");
-        var prev = createElement("button", "gallery-nav prev", "‹");
-        var next = createElement("button", "gallery-nav next", "›");
+      function getOptimizedGalleryImage(code, src) {
+        var optimizedByCode = {
+          "01": "./assets/optimized/products/energy-storage.jpg",
+          "02": "./assets/optimized/products/hybrid-inverter.jpg",
+          "03": "./assets/optimized/products/two-wheel-scooter.jpg",
+          "04": "./assets/optimized/products/tricycle.jpg",
+          "05": "./assets/optimized/products/e-bike.jpg",
+          "06": "./assets/optimized/products/projector.jpg",
+          "08": "./assets/optimized/products/bluetooth-speaker.jpg"
+        };
+
+        if (optimizedByCode[code]) {
+          return optimizedByCode[code];
+        }
+
+        return src;
+      }
+
+      function findSummaryProduct(siteData, code) {
+        var products = [];
         var index = 0;
-        var buttons = [];
 
-        prev.type = "button";
-        next.type = "button";
-        prev.setAttribute("aria-label", "上一张");
-        next.setAttribute("aria-label", "下一张");
-
-        function renderMain(nextIndex) {
-          if (images.length === 0) {
-            return;
-          }
-
-          index = nextIndex;
-          image.classList.remove("is-visible");
-
-          window.setTimeout(function () {
-            image.src = images[index];
-            image.alt = productName + " 图片 " + (index + 1);
-            image.classList.add("is-visible");
-          }, 100);
-
-          buttons.forEach(function (button, buttonIndex) {
-            button.classList.toggle("active", buttonIndex === index);
-          });
-        }
-
-        if (!images || images.length === 0) {
-          mainImage.appendChild(createElement("div", "image-fallback", "暂无产品图片"));
-          gallery.appendChild(mainImage);
-          return gallery;
-        }
-
-        image.loading = "lazy";
-        image.draggable = false;
-        image.addEventListener("load", function () {
-          image.classList.add("is-visible");
-        });
-        image.addEventListener("error", function () {
-          image.classList.remove("is-visible");
-          image.removeAttribute("src");
-          mainImage.innerHTML = "";
-          mainImage.appendChild(createElement("div", "image-fallback", "图片加载失败"));
-        });
-
-        if (images.length > 1) {
-          prev.addEventListener("click", function () {
-            var nextIndex = index - 1;
-            if (nextIndex < 0) {
-              nextIndex = images.length - 1;
-            }
-            renderMain(nextIndex);
-          });
-
-          next.addEventListener("click", function () {
-            var nextIndex = index + 1;
-            if (nextIndex >= images.length) {
-              nextIndex = 0;
-            }
-            renderMain(nextIndex);
-          });
-
-          mainImage.appendChild(prev);
-          mainImage.appendChild(next);
-        }
-
-        mainImage.appendChild(image);
-        gallery.appendChild(mainImage);
-
-        images.forEach(function (src, i) {
-          var thumb = createElement("button", "thumb", "");
-          var thumbImage = document.createElement("img");
-
-          thumb.type = "button";
-          thumbImage.src = src;
-          thumbImage.alt = productName + " 缩略图 " + (i + 1);
-          thumbImage.loading = "lazy";
-          thumbImage.addEventListener("error", function () {
-            thumb.disabled = true;
-          });
-          thumb.appendChild(thumbImage);
-          thumb.addEventListener("click", function () {
-            renderMain(i);
-          });
-
-          buttons.push(thumb);
-          thumbs.appendChild(thumb);
-        });
-
-        if (images.length > 1) {
-          gallery.appendChild(thumbs);
-        }
-
-        renderMain(0);
-        return gallery;
-      }
-
-      function buildInfo(detailProduct, summaryText) {
-        var info = createElement("section", "info");
-        var meta = createElement("div", "meta");
-        var title = createElement("h1", "title", detailProduct.name);
-        var code = createElement("span", "code", "产品编号：" + detailProduct.code);
-        var industry = createElement("span", "industry", detailProduct.industry || "未分类");
-
-        meta.appendChild(title);
-        meta.appendChild(code);
-        info.appendChild(meta);
-        info.appendChild(industry);
-
-        if (summaryText) {
-          var summarySection = createElement("section", "section");
-          summarySection.appendChild(createElement("h3", "", "产品概述"));
-          summarySection.appendChild(createElement("p", "summary", summaryText));
-          info.appendChild(summarySection);
-        }
-
-        if (detailProduct.coreFeatures && detailProduct.coreFeatures.length > 0) {
-          var featureSection = createElement("section", "section");
-          var featureList = createElement("ul", "feature-list");
-
-          featureSection.appendChild(createElement("h3", "", "核心参数"));
-
-          detailProduct.coreFeatures.forEach(function (feature) {
-            featureList.appendChild(createElement("li", "", feature));
-          });
-
-          featureSection.appendChild(featureList);
-          info.appendChild(featureSection);
-        }
-
-        return info;
-      }
-
-      function buildSimpleVariants(rows) {
-        var table = createElement("table", "variant-simple");
-        var thead = document.createElement("thead");
-        var tbody = document.createElement("tbody");
-        var headRow = document.createElement("tr");
-        var visibleRows = rows.filter(function (row) {
-          return row && row.model && row.model !== "车型";
-        });
-
-        ["型号", "配置", "配件信息", "装柜信息"].forEach(function (title) {
-          headRow.appendChild(createElement("th", "", title));
-        });
-
-        thead.appendChild(headRow);
-        table.appendChild(thead);
-
-        visibleRows.forEach(function (row) {
-          var tr = document.createElement("tr");
-          var noteText = row.note_raw || "";
-          var accessories = noteText;
-          var shipping = "-";
-
-          if (noteText.includes("40尺")) {
-            var parts = noteText.split(/(?=40尺)/);
-            accessories = parts[0].replace(/[、\s]+$/, '') || "-";
-            shipping = parts[1].trim() || "-";
-          } else if (noteText === "-" || noteText === "") {
-            accessories = "-";
-          }
-
-          tr.appendChild(createElement("td", "", row.model || "-"));
-          tr.appendChild(createElement("td", "", row.config_raw || "-"));
-          tr.appendChild(createElement("td", "", accessories));
-          tr.appendChild(createElement("td", "", shipping));
-          tbody.appendChild(tr);
-        });
-
-        table.appendChild(tbody);
-        return table;
-      }
-
-      function buildStructuredVariant(variantItem) {
-        var block = createElement("article", "variant-block");
-        var title = createElement("h4", "variant-title", variantItem.variant || "规格");
-        var params = variantItem.params || {};
-
-        block.appendChild(title);
-
-        Object.keys(params).forEach(function (groupKey) {
-          var table = createElement("table", "group-table");
-          var groupHead = document.createElement("tr");
-          var headCell = createElement("th", "", groupKey);
-          var headValue = createElement("th", "", "参数值");
-
-          groupHead.appendChild(headCell);
-          groupHead.appendChild(headValue);
-          table.appendChild(groupHead);
-
-          Object.keys(params[groupKey] || {}).forEach(function (itemKey) {
-            var row = document.createElement("tr");
-            var keyCell = createElement("td", "", itemKey);
-            var valueCell = createElement("td", "", String(params[groupKey][itemKey]));
-
-            row.appendChild(keyCell);
-            row.appendChild(valueCell);
-            table.appendChild(row);
-          });
-
-          block.appendChild(table);
-        });
-
-        return block;
-      }
-
-      function buildVariants(variants) {
-        if (!variants || variants.length === 0) {
+        if (!siteData || !Array.isArray(siteData.products)) {
           return null;
         }
 
-        var section = createElement("section", "variants");
-        var isSimple = variants.some(function (item) {
-          return Object.prototype.hasOwnProperty.call(item, "model");
-        });
-
-        section.appendChild(createElement("h3", "", "详细规格"));
-
-        if (isSimple) {
-          section.appendChild(buildSimpleVariants(variants));
-          return section;
+        products = siteData.products;
+        for (index = 0; index < products.length; index += 1) {
+          if (products[index] && products[index].code === code) {
+            return products[index];
+          }
         }
 
-        variants.forEach(function (variantItem) {
-          section.appendChild(buildStructuredVariant(variantItem));
+        return null;
+      }
+
+      function getSafeText(value, fallback) {
+        if (typeof value === "string") {
+          if (value.trim()) {
+            return value.trim();
+          }
+        }
+
+        if (typeof fallback === "string") {
+          return fallback;
+        }
+
+        return "";
+      }
+
+      function splitTextLines(value) {
+        var lines = [];
+        var source = "";
+        var rawParts = [];
+        var index = 0;
+        var current = "";
+
+        if (typeof value !== "string") {
+          return lines;
+        }
+
+        source = value.replace(/\r\n/g, "\n");
+        rawParts = source.split("\n");
+        for (index = 0; index < rawParts.length; index += 1) {
+          current = rawParts[index].trim();
+          if (current) {
+            lines.push(current);
+          }
+        }
+
+        return lines;
+      }
+
+      function getDisplayImage(images, index, productCode) {
+        var safeImages = [];
+        var safeIndex = 0;
+        var imageItem = null;
+        var src = "";
+
+        if (!Array.isArray(images) || images.length === 0) {
+          return "";
+        }
+
+        safeImages = images;
+        safeIndex = index;
+        if (safeIndex < 0) {
+          safeIndex = 0;
+        }
+        if (safeIndex >= safeImages.length) {
+          safeIndex = safeImages.length - 1;
+        }
+
+        imageItem = safeImages[safeIndex];
+        if (imageItem && typeof imageItem === "object") {
+          src = getSafeText(imageItem.src, "");
+        } else {
+          src = imageItem;
+        }
+
+        return getOptimizedGalleryImage(productCode, src);
+      }
+
+      function getThumbImage(images, index) {
+        var safeImages = [];
+        var safeIndex = 0;
+        var imageItem = null;
+        var src = "";
+
+        if (!Array.isArray(images) || images.length === 0) {
+          return "";
+        }
+
+        safeImages = images;
+        safeIndex = index;
+        if (safeIndex < 0) {
+          safeIndex = 0;
+        }
+        if (safeIndex >= safeImages.length) {
+          safeIndex = safeImages.length - 1;
+        }
+
+        imageItem = safeImages[safeIndex];
+        if (imageItem && typeof imageItem === "object") {
+          src = getSafeText(imageItem.thumbSrc, "");
+          if (!src) {
+            src = getSafeText(imageItem.optimizedSrc, "");
+          }
+          if (!src) {
+            src = getSafeText(imageItem.src, "");
+          }
+          return src;
+        }
+
+        return getSafeText(imageItem, "");
+      }
+
+      function getDisplayModel(images, index, totalCount) {
+        var safeImages = [];
+        var safeIndex = 0;
+        var imageItem = null;
+        var modelName = "";
+
+        if (!Array.isArray(images) || images.length === 0) {
+          return "";
+        }
+
+        safeImages = images;
+        safeIndex = index;
+        if (safeIndex < 0) {
+          safeIndex = 0;
+        }
+        if (safeIndex >= safeImages.length) {
+          safeIndex = safeImages.length - 1;
+        }
+
+        imageItem = safeImages[safeIndex];
+        if (imageItem && typeof imageItem === "object") {
+          modelName = getSafeText(imageItem.model, "");
+        }
+
+        if (!modelName && totalCount > 1) {
+          modelName = "产品图片 " + String(index + 1);
+        }
+
+        return modelName;
+      }
+
+      function splitNoteText(noteText) {
+        var result = {
+          accessories: "-",
+          shipping: "-"
+        };
+        var safeText = "";
+        var shippingIndex = -1;
+
+        if (typeof noteText !== "string") {
+          return result;
+        }
+
+        safeText = noteText.trim();
+        if (!safeText || safeText === "-") {
+          return result;
+        }
+
+        shippingIndex = safeText.indexOf("40尺");
+        if (shippingIndex === -1) {
+          shippingIndex = safeText.indexOf("20尺");
+        }
+        if (shippingIndex === -1) {
+          shippingIndex = safeText.indexOf("柜");
+        }
+
+        if (shippingIndex > 0) {
+          result.accessories = safeText.slice(0, shippingIndex).replace(/[、\s]+$/, "").trim();
+          result.shipping = safeText.slice(shippingIndex).trim();
+        } else {
+          result.accessories = safeText;
+        }
+
+        if (!result.accessories) {
+          result.accessories = "-";
+        }
+        if (!result.shipping) {
+          result.shipping = "-";
+        }
+
+        return result;
+      }
+
+      function createSimpleDisplayItem(detailProduct, row, summaryText, imageSrc, index) {
+        var noteInfo = splitNoteText(row.note_raw);
+        var featureLines = splitTextLines(row.config_raw);
+        var detailRows = [];
+
+        detailRows.push({
+          label: "型号",
+          value: getSafeText(row.model, "-")
         });
 
-        return section;
+        if (getSafeText(row.category, "")) {
+          detailRows.push({
+            label: "类别",
+            value: getSafeText(row.category, "-")
+          });
+        }
+
+        detailRows.push({
+          label: "配置",
+          value: getSafeText(row.config_raw, "-")
+        });
+        detailRows.push({
+          label: "配件信息",
+          value: noteInfo.accessories
+        });
+        detailRows.push({
+          label: "装柜信息",
+          value: noteInfo.shipping
+        });
+
+        return {
+          id: detailProduct.code + "-simple-" + String(index),
+          type: "simple",
+          title: getSafeText(detailProduct.name, "产品详情"),
+          modelName: getSafeText(row.model, ""),
+          imageSrc: imageSrc,
+          summary: getSafeText(summaryText, ""),
+          industry: getSafeText(detailProduct.industry, "未分类"),
+          productCode: getSafeText(detailProduct.code, "-"),
+          features: featureLines,
+          detailRows: detailRows,
+          structuredParams: null
+        };
+      }
+
+      function createStructuredDisplayItem(detailProduct, variantItem, summaryText, imageSrc, index) {
+        var features = [];
+        var coreFeatures = [];
+        var featureIndex = 0;
+
+        if (Array.isArray(detailProduct.coreFeatures)) {
+          coreFeatures = detailProduct.coreFeatures;
+        }
+
+        for (featureIndex = 0; featureIndex < coreFeatures.length; featureIndex += 1) {
+          if (typeof coreFeatures[featureIndex] === "string" && coreFeatures[featureIndex].trim()) {
+            features.push(coreFeatures[featureIndex].trim());
+          }
+        }
+
+        return {
+          id: detailProduct.code + "-structured-" + String(index),
+          type: "structured",
+          title: getSafeText(detailProduct.name, "产品详情"),
+          modelName: getSafeText(variantItem.variant, ""),
+          imageSrc: imageSrc,
+          summary: getSafeText(summaryText, ""),
+          industry: getSafeText(detailProduct.industry, "未分类"),
+          productCode: getSafeText(detailProduct.code, "-"),
+          features: features,
+          detailRows: [],
+          structuredParams: variantItem.params || {}
+        };
+      }
+
+      function createProductDisplayItem(detailProduct, summaryText, imageSrc, index, totalCount) {
+        var features = [];
+        var coreFeatures = [];
+        var featureIndex = 0;
+        var modelName = getDisplayModel(detailProduct.images, index, totalCount);
+
+        if (Array.isArray(detailProduct.coreFeatures)) {
+          coreFeatures = detailProduct.coreFeatures;
+        }
+
+        for (featureIndex = 0; featureIndex < coreFeatures.length; featureIndex += 1) {
+          if (typeof coreFeatures[featureIndex] === "string" && coreFeatures[featureIndex].trim()) {
+            features.push(coreFeatures[featureIndex].trim());
+          }
+        }
+
+        return {
+          id: detailProduct.code + "-product-" + String(index),
+          type: "product",
+          title: getSafeText(detailProduct.name, "产品详情"),
+          modelName: modelName,
+          imageSrc: imageSrc,
+          thumbSrc: getThumbImage(detailProduct.images, index),
+          summary: getSafeText(summaryText, ""),
+          industry: getSafeText(detailProduct.industry, "未分类"),
+          productCode: getSafeText(detailProduct.code, "-"),
+          features: features,
+          detailRows: [],
+          structuredParams: null
+        };
+      }
+
+      function buildDisplayItems(detailProduct, summaryText) {
+        var items = [];
+        var variants = [];
+        var images = [];
+        var variantIndex = 0;
+        var imageIndex = 0;
+        var variantItem = null;
+        var row = null;
+
+        if (!detailProduct) {
+          return items;
+        }
+
+        if (Array.isArray(detailProduct.variants)) {
+          variants = detailProduct.variants;
+        }
+        if (Array.isArray(detailProduct.images)) {
+          images = detailProduct.images;
+        }
+
+        for (variantIndex = 0; variantIndex < variants.length; variantIndex += 1) {
+          variantItem = variants[variantIndex];
+          if (!variantItem || typeof variantItem !== "object") {
+            continue;
+          }
+
+          if (Object.prototype.hasOwnProperty.call(variantItem, "model")) {
+            row = variantItem;
+            if (!getSafeText(row.model, "") || row.model === "车型") {
+              continue;
+            }
+
+            items.push(
+              createSimpleDisplayItem(
+                detailProduct,
+                row,
+                summaryText,
+                getDisplayImage(images, items.length, detailProduct.code),
+                items.length
+              )
+            );
+            continue;
+          }
+
+          items.push(
+            createStructuredDisplayItem(
+              detailProduct,
+              variantItem,
+              summaryText,
+              getDisplayImage(images, items.length, detailProduct.code),
+              items.length
+            )
+          );
+        }
+
+        if (items.length > 0) {
+          return items;
+        }
+
+        if (images.length === 0) {
+          items.push(createProductDisplayItem(detailProduct, summaryText, "", 0, 1));
+          return items;
+        }
+
+        for (imageIndex = 0; imageIndex < images.length; imageIndex += 1) {
+          items.push(
+            createProductDisplayItem(
+              detailProduct,
+              summaryText,
+              getDisplayImage(images, imageIndex, detailProduct.code),
+              imageIndex,
+              images.length
+            )
+          );
+        }
+
+        return items;
       }
 
       function renderNotFound(root) {
@@ -686,16 +1012,575 @@
         root.appendChild(box);
       }
 
+      function buildLayout() {
+        var refs = {};
+        var card = createElement("article", "card");
+        var main = createElement("section", "main");
+        var gallery = createElement("section", "gallery");
+        var mainImage = createElement("div", "main-image");
+        var image = document.createElement("img");
+        var fallback = createElement("div", "image-fallback", "暂无产品图片");
+        var prev = createElement("button", "gallery-nav prev", "‹");
+        var next = createElement("button", "gallery-nav next", "›");
+        var caption = createElement("div", "gallery-caption");
+        var galleryProduct = createElement("div", "gallery-product");
+        var galleryModel = createElement("div", "gallery-model");
+        var thumbsShell = createElement("div", "thumbs-shell is-static");
+        var leftHotspot = createElement("button", "thumb-hotspot left", "‹");
+        var rightHotspot = createElement("button", "thumb-hotspot right", "›");
+        var thumbsViewport = createElement("div", "thumbs-viewport");
+        var thumbsTrack = createElement("div", "thumbs-track");
+        var info = createElement("section", "info");
+        var meta = createElement("div", "meta");
+        var metaTop = createElement("div", "meta-top");
+        var titleBlock = createElement("div", "title-block");
+        var title = createElement("h1", "title");
+        var code = createElement("span", "code");
+        var industry = createElement("span", "industry");
+        var modelChip = createElement("div", "model-chip");
+        var summarySection = createElement("section", "section");
+        var summaryTitle = createElement("h3", "", "产品概述");
+        var summary = createElement("p", "summary");
+        var featureSection = createElement("section", "section");
+        var featureTitle = createElement("h3", "", "当前型号配置");
+        var featureList = createElement("ul", "feature-list");
+        var detailSection = createElement("section", "section");
+        var detailTitle = createElement("h3", "", "详细规格");
+        var detailContent = createElement("div", "variant-container");
+
+        prev.type = "button";
+        next.type = "button";
+        leftHotspot.type = "button";
+        rightHotspot.type = "button";
+
+        prev.setAttribute("aria-label", "上一项");
+        next.setAttribute("aria-label", "下一项");
+        leftHotspot.setAttribute("aria-label", "向左滚动缩略图");
+        rightHotspot.setAttribute("aria-label", "向右滚动缩略图");
+
+        image.loading = "eager";
+        image.decoding = "async";
+        image.fetchPriority = "high";
+        image.draggable = false;
+
+        mainImage.appendChild(fallback);
+        mainImage.appendChild(prev);
+        mainImage.appendChild(next);
+        mainImage.appendChild(image);
+
+        caption.appendChild(galleryProduct);
+        caption.appendChild(galleryModel);
+
+        thumbsViewport.appendChild(thumbsTrack);
+        thumbsShell.appendChild(leftHotspot);
+        thumbsShell.appendChild(thumbsViewport);
+        thumbsShell.appendChild(rightHotspot);
+
+        gallery.appendChild(mainImage);
+        gallery.appendChild(caption);
+        gallery.appendChild(thumbsShell);
+
+        titleBlock.appendChild(title);
+        titleBlock.appendChild(industry);
+        metaTop.appendChild(titleBlock);
+        metaTop.appendChild(code);
+        meta.appendChild(metaTop);
+        meta.appendChild(modelChip);
+
+        summarySection.appendChild(summaryTitle);
+        summarySection.appendChild(summary);
+
+        featureSection.appendChild(featureTitle);
+        featureSection.appendChild(featureList);
+
+        detailSection.appendChild(detailTitle);
+        detailSection.appendChild(detailContent);
+
+        info.appendChild(meta);
+        info.appendChild(summarySection);
+        info.appendChild(featureSection);
+        info.appendChild(detailSection);
+
+        main.appendChild(gallery);
+        main.appendChild(info);
+        card.appendChild(main);
+
+        refs.card = card;
+        refs.image = image;
+        refs.fallback = fallback;
+        refs.prev = prev;
+        refs.next = next;
+        refs.galleryProduct = galleryProduct;
+        refs.galleryModel = galleryModel;
+        refs.thumbsShell = thumbsShell;
+        refs.leftHotspot = leftHotspot;
+        refs.rightHotspot = rightHotspot;
+        refs.thumbsViewport = thumbsViewport;
+        refs.thumbsTrack = thumbsTrack;
+        refs.title = title;
+        refs.code = code;
+        refs.industry = industry;
+        refs.modelChip = modelChip;
+        refs.summarySection = summarySection;
+        refs.summary = summary;
+        refs.featureSection = featureSection;
+        refs.featureTitle = featureTitle;
+        refs.featureList = featureList;
+        refs.detailSection = detailSection;
+        refs.detailContent = detailContent;
+        refs.thumbButtons = [];
+
+        return refs;
+      }
+
+      function buildDetailTable(rows) {
+        var table = createElement("table", "detail-table");
+        var tbody = document.createElement("tbody");
+        var index = 0;
+        var row = null;
+        var tr = null;
+
+        for (index = 0; index < rows.length; index += 1) {
+          row = rows[index];
+          if (!row) {
+            continue;
+          }
+
+          tr = document.createElement("tr");
+          tr.appendChild(createElement("th", "", getSafeText(row.label, "-")));
+          tr.appendChild(createElement("td", "", getSafeText(row.value, "-")));
+          tbody.appendChild(tr);
+        }
+
+        table.appendChild(tbody);
+        return table;
+      }
+
+      function buildStructuredTables(params) {
+        var fragment = document.createDocumentFragment();
+        var groupKeys = [];
+        var groupIndex = 0;
+        var groupKey = "";
+        var groupParams = null;
+        var itemKeys = [];
+        var itemIndex = 0;
+        var itemKey = "";
+        var block = null;
+        var title = null;
+        var table = null;
+        var tbody = null;
+        var row = null;
+
+        if (!params || typeof params !== "object") {
+          return fragment;
+        }
+
+        groupKeys = Object.keys(params);
+        for (groupIndex = 0; groupIndex < groupKeys.length; groupIndex += 1) {
+          groupKey = groupKeys[groupIndex];
+          groupParams = params[groupKey];
+          block = createElement("article", "variant-block");
+          title = createElement("h4", "variant-title", groupKey);
+          table = createElement("table", "detail-table");
+          tbody = document.createElement("tbody");
+
+          itemKeys = Object.keys(groupParams || {});
+          for (itemIndex = 0; itemIndex < itemKeys.length; itemIndex += 1) {
+            itemKey = itemKeys[itemIndex];
+            row = document.createElement("tr");
+            row.appendChild(createElement("th", "", itemKey));
+            row.appendChild(createElement("td", "", String(groupParams[itemKey])));
+            tbody.appendChild(row);
+          }
+
+          table.appendChild(tbody);
+          block.appendChild(title);
+          block.appendChild(table);
+          fragment.appendChild(block);
+        }
+
+        return fragment;
+      }
+
+      function createThumbButton(item, index, onClick) {
+        var button = createElement("button", "thumb");
+        var frame = createElement("span", "thumb-frame");
+        var label = createElement("span", "thumb-label");
+        var image = null;
+        var labelText = "";
+
+        button.type = "button";
+        button.setAttribute("data-index", String(index));
+        button.setAttribute("aria-label", "切换到第 " + String(index + 1) + " 个型号");
+
+        if (item.imageSrc) {
+          image = document.createElement("img");
+          image.src = getSafeText(item.thumbSrc, item.imageSrc);
+          image.alt = item.title + " 缩略图 " + String(index + 1);
+          image.loading = "lazy";
+          image.decoding = "async";
+          image.addEventListener("error", function () {
+            frame.removeChild(image);
+            frame.textContent = item.productCode || String(index + 1);
+          });
+          frame.appendChild(image);
+        } else {
+          frame.textContent = item.productCode || String(index + 1);
+        }
+
+        labelText = getSafeText(item.modelName, "");
+        if (!labelText) {
+          labelText = item.title;
+        }
+
+        label.textContent = labelText;
+        button.appendChild(frame);
+        button.appendChild(label);
+        button.addEventListener("click", function () {
+          onClick(index);
+        });
+
+        return button;
+      }
+
+      function initThumbScroller(refs, state) {
+        var timerId = 0;
+        var speed = 0;
+        var edgeWidth = 88;
+        var baseSpeed = 4;
+        var maxSpeed = 14;
+        var stepSize = 136;
+
+        function hasOverflow() {
+          return refs.thumbsViewport.scrollWidth > refs.thumbsViewport.clientWidth + 4;
+        }
+
+        function syncScrollableState() {
+          state.isScrollable = hasOverflow();
+          refs.thumbsShell.classList.toggle("is-scrollable", state.isScrollable);
+          refs.thumbsShell.classList.toggle("is-static", !state.isScrollable);
+        }
+
+        function stopScroll() {
+          speed = 0;
+          if (timerId) {
+            window.clearInterval(timerId);
+            timerId = 0;
+          }
+        }
+
+        function tick() {
+          var viewport = refs.thumbsViewport;
+          var maxScrollLeft = viewport.scrollWidth - viewport.clientWidth;
+          var nextScrollLeft = viewport.scrollLeft + speed;
+
+          if (!state.isScrollable || !speed) {
+            stopScroll();
+            return;
+          }
+
+          if (nextScrollLeft < 0) {
+            nextScrollLeft = 0;
+          }
+          if (nextScrollLeft > maxScrollLeft) {
+            nextScrollLeft = maxScrollLeft;
+          }
+
+          viewport.scrollLeft = nextScrollLeft;
+
+          if ((nextScrollLeft === 0 && speed < 0) || (nextScrollLeft === maxScrollLeft && speed > 0)) {
+            stopScroll();
+          }
+        }
+
+        function startScroll(nextSpeed) {
+          if (!state.isScrollable) {
+            return;
+          }
+
+          speed = nextSpeed;
+          if (!timerId) {
+            timerId = window.setInterval(tick, 16);
+          }
+        }
+
+        function handlePointerMove(event) {
+          var rect = null;
+          var relativeX = 0;
+          var distance = 0;
+          var ratio = 0;
+          var nextSpeed = 0;
+
+          if (!state.isScrollable) {
+            stopScroll();
+            return;
+          }
+
+          rect = refs.thumbsShell.getBoundingClientRect();
+          relativeX = event.clientX - rect.left;
+
+          if (relativeX <= edgeWidth) {
+            distance = edgeWidth - relativeX;
+            ratio = distance / edgeWidth;
+            nextSpeed = -1 * (baseSpeed + (maxSpeed - baseSpeed) * ratio);
+            startScroll(nextSpeed);
+            return;
+          }
+
+          if (relativeX >= rect.width - edgeWidth) {
+            distance = relativeX - (rect.width - edgeWidth);
+            ratio = distance / edgeWidth;
+            nextSpeed = baseSpeed + (maxSpeed - baseSpeed) * ratio;
+            startScroll(nextSpeed);
+            return;
+          }
+
+          stopScroll();
+        }
+
+        function scrollByStep(direction) {
+          if (!state.isScrollable) {
+            return;
+          }
+
+          refs.thumbsViewport.scrollBy({
+            left: direction * stepSize,
+            behavior: "smooth"
+          });
+        }
+
+        refs.thumbsShell.addEventListener("mousemove", handlePointerMove);
+        refs.thumbsViewport.addEventListener("mousemove", handlePointerMove);
+        refs.thumbsShell.addEventListener("mouseleave", stopScroll);
+        refs.thumbsViewport.addEventListener("mouseleave", stopScroll);
+
+        refs.leftHotspot.addEventListener("mouseenter", function () {
+          startScroll(-1 * maxSpeed);
+        });
+        refs.leftHotspot.addEventListener("mouseleave", stopScroll);
+        refs.rightHotspot.addEventListener("mouseenter", function () {
+          startScroll(maxSpeed);
+        });
+        refs.rightHotspot.addEventListener("mouseleave", stopScroll);
+        refs.leftHotspot.addEventListener("focus", function () {
+          startScroll(-1 * maxSpeed);
+        });
+        refs.leftHotspot.addEventListener("blur", stopScroll);
+        refs.rightHotspot.addEventListener("focus", function () {
+          startScroll(maxSpeed);
+        });
+        refs.rightHotspot.addEventListener("blur", stopScroll);
+        refs.leftHotspot.addEventListener("click", function () {
+          scrollByStep(-1);
+        });
+        refs.rightHotspot.addEventListener("click", function () {
+          scrollByStep(1);
+        });
+
+        window.addEventListener("resize", syncScrollableState);
+
+        state.stopThumbScroll = stopScroll;
+        state.refreshThumbScroller = syncScrollableState;
+      }
+
+      function updateMainImage(refs, item, showNavigation) {
+        var nextAlt = item.title;
+
+        refs.prev.style.display = showNavigation ? "inline-grid" : "none";
+        refs.next.style.display = showNavigation ? "inline-grid" : "none";
+
+        if (item.modelName) {
+          refs.galleryModel.textContent = item.modelName;
+          nextAlt = item.title + " - " + item.modelName;
+        } else {
+          refs.galleryModel.textContent = "";
+        }
+
+        refs.galleryProduct.textContent = item.title;
+
+        if (!item.imageSrc) {
+          refs.image.classList.remove("is-visible");
+          refs.image.removeAttribute("src");
+          refs.image.alt = "";
+          refs.fallback.style.display = "block";
+          refs.fallback.textContent = "暂无产品图片";
+          return;
+        }
+
+        refs.fallback.style.display = "none";
+        refs.image.classList.remove("is-visible");
+        refs.image.alt = nextAlt;
+        refs.image.src = item.imageSrc;
+      }
+
+      function updateInfo(refs, item) {
+        var featureIndex = 0;
+        var rows = [];
+
+        refs.title.textContent = item.title;
+        refs.code.textContent = "产品编号：" + item.productCode;
+        refs.industry.textContent = item.industry || "未分类";
+
+        if (item.modelName) {
+          refs.modelChip.style.display = "inline-flex";
+          refs.modelChip.textContent = "当前型号：" + item.modelName;
+        } else {
+          refs.modelChip.style.display = "none";
+          refs.modelChip.textContent = "";
+        }
+
+        if (item.summary) {
+          refs.summarySection.style.display = "block";
+          refs.summary.textContent = item.summary;
+        } else {
+          refs.summarySection.style.display = "none";
+          refs.summary.textContent = "";
+        }
+
+        refs.featureList.innerHTML = "";
+        if (Array.isArray(item.features) && item.features.length > 0) {
+          refs.featureSection.style.display = "block";
+          if (item.type === "product") {
+            refs.featureTitle.textContent = "核心参数";
+          } else {
+            refs.featureTitle.textContent = "当前型号配置";
+          }
+
+          for (featureIndex = 0; featureIndex < item.features.length; featureIndex += 1) {
+            refs.featureList.appendChild(createElement("li", "", item.features[featureIndex]));
+          }
+        } else {
+          refs.featureSection.style.display = "none";
+        }
+
+        refs.detailContent.innerHTML = "";
+        if (item.type === "simple") {
+          rows = item.detailRows || [];
+          refs.detailSection.style.display = "block";
+          refs.detailContent.appendChild(buildDetailTable(rows));
+        } else if (item.type === "structured") {
+          refs.detailSection.style.display = "block";
+          refs.detailContent.appendChild(buildStructuredTables(item.structuredParams));
+        } else {
+          refs.detailSection.style.display = "none";
+        }
+
+        if (item.modelName) {
+          document.title = item.title + " - " + item.modelName;
+        } else {
+          document.title = item.title;
+        }
+      }
+
+      function centerActiveThumb(refs, index, isScrollable) {
+        var button = null;
+        var targetLeft = 0;
+        var maxScroll = 0;
+
+        if (!isScrollable) {
+          return;
+        }
+
+        button = refs.thumbButtons[index];
+        if (!button) {
+          return;
+        }
+
+        targetLeft = button.offsetLeft - (refs.thumbsViewport.clientWidth - button.offsetWidth) / 2;
+        maxScroll = refs.thumbsViewport.scrollWidth - refs.thumbsViewport.clientWidth;
+
+        if (targetLeft < 0) {
+          targetLeft = 0;
+        }
+        if (targetLeft > maxScroll) {
+          targetLeft = maxScroll;
+        }
+
+        refs.thumbsViewport.scrollTo({
+          left: targetLeft,
+          behavior: "smooth"
+        });
+      }
+
+      function normalizeLoopIndex(index, totalCount) {
+        var safeIndex = index;
+
+        if (totalCount <= 0) {
+          return 0;
+        }
+
+        if (safeIndex < 0) {
+          safeIndex = totalCount - 1;
+        }
+        if (safeIndex >= totalCount) {
+          safeIndex = 0;
+        }
+
+        return safeIndex;
+      }
+
+      function preloadDisplayImage(state, item) {
+        var imageSrc = "";
+        var preloadImage = null;
+
+        if (!state || !item) {
+          return;
+        }
+
+        imageSrc = getSafeText(item.imageSrc, "");
+        if (!imageSrc || state.preloadedImages[imageSrc]) {
+          return;
+        }
+
+        preloadImage = new Image();
+        preloadImage.decoding = "async";
+        preloadImage.src = imageSrc;
+        state.preloadedImages[imageSrc] = preloadImage;
+      }
+
+      function preloadNearbyImages(state, items, activeIndex) {
+        var totalCount = 0;
+        var currentIndex = 0;
+        var prevIndex = 0;
+        var nextIndex = 0;
+
+        if (!state || !Array.isArray(items) || items.length === 0) {
+          return;
+        }
+
+        totalCount = items.length;
+        currentIndex = normalizeLoopIndex(activeIndex, totalCount);
+        prevIndex = normalizeLoopIndex(currentIndex - 1, totalCount);
+        nextIndex = normalizeLoopIndex(currentIndex + 1, totalCount);
+
+        preloadDisplayImage(state, items[currentIndex]);
+        if (prevIndex !== currentIndex) {
+          preloadDisplayImage(state, items[prevIndex]);
+        }
+        if (nextIndex !== currentIndex && nextIndex !== prevIndex) {
+          preloadDisplayImage(state, items[nextIndex]);
+        }
+      }
+
       function init() {
         var root = document.getElementById("detailRoot");
         var code = getCode();
         var detailData = window.PRODUCT_DETAIL_DATA;
         var siteData = window.SITE_DATA;
+        var detailProducts = [];
         var detailProduct = null;
         var summaryProduct = null;
-        var container = null;
-        var main = null;
-        var variants = null;
+        var displayItems = [];
+        var refs = null;
+        var state = {
+          activeIndex: 0,
+          isScrollable: false,
+          stopThumbScroll: null,
+          refreshThumbScroller: null,
+          preloadedImages: {}
+        };
+        var productIndex = 0;
+        var thumbIndex = 0;
 
         if (!root) {
           return;
@@ -706,35 +1591,78 @@
           return;
         }
 
-        detailProduct = detailData.products.find(function (item) {
-          return item.code === code;
-        });
+        detailProducts = detailData.products;
+        for (productIndex = 0; productIndex < detailProducts.length; productIndex += 1) {
+          if (detailProducts[productIndex] && detailProducts[productIndex].code === code) {
+            detailProduct = detailProducts[productIndex];
+            break;
+          }
+        }
 
         if (!detailProduct) {
           renderNotFound(root);
           return;
         }
 
-        if (siteData && Array.isArray(siteData.products)) {
-          summaryProduct = siteData.products.find(function (item) {
-            return item.code === code;
-          });
+        summaryProduct = findSummaryProduct(siteData, code);
+        displayItems = buildDisplayItems(detailProduct, summaryProduct ? summaryProduct.text : "");
+
+        if (displayItems.length === 0) {
+          renderNotFound(root);
+          return;
         }
 
-        container = createElement("article", "card");
-        main = createElement("section", "main");
+        refs = buildLayout();
+        refs.image.addEventListener("load", function () {
+          refs.image.classList.add("is-visible");
+          refs.fallback.style.display = "none";
+        });
 
-        main.appendChild(buildGallery(detailProduct.images || [], detailProduct.name));
-        main.appendChild(buildInfo(detailProduct, summaryProduct ? summaryProduct.text : ""));
-        container.appendChild(main);
+        refs.image.addEventListener("error", function () {
+          refs.image.classList.remove("is-visible");
+          refs.image.removeAttribute("src");
+          refs.fallback.style.display = "block";
+          refs.fallback.textContent = "图片加载失败";
+        });
 
-        variants = buildVariants(detailProduct.variants || []);
-        if (variants) {
-          container.appendChild(variants);
+        function setActiveItem(nextIndex) {
+          var safeIndex = normalizeLoopIndex(nextIndex, displayItems.length);
+          var button = null;
+
+          state.activeIndex = safeIndex;
+          updateMainImage(refs, displayItems[safeIndex], displayItems.length > 1);
+          updateInfo(refs, displayItems[safeIndex]);
+
+          for (thumbIndex = 0; thumbIndex < refs.thumbButtons.length; thumbIndex += 1) {
+            button = refs.thumbButtons[thumbIndex];
+            button.classList.toggle("active", thumbIndex === safeIndex);
+          }
+
+          centerActiveThumb(refs, safeIndex, state.isScrollable);
+          preloadNearbyImages(state, displayItems, safeIndex);
+        }
+
+        refs.prev.addEventListener("click", function () {
+          setActiveItem(state.activeIndex - 1);
+        });
+        refs.next.addEventListener("click", function () {
+          setActiveItem(state.activeIndex + 1);
+        });
+
+        for (thumbIndex = 0; thumbIndex < displayItems.length; thumbIndex += 1) {
+          refs.thumbButtons.push(
+            createThumbButton(displayItems[thumbIndex], thumbIndex, setActiveItem)
+          );
+          refs.thumbsTrack.appendChild(refs.thumbButtons[thumbIndex]);
         }
 
         root.innerHTML = "";
-        root.appendChild(container);
+        root.appendChild(refs.card);
+        initThumbScroller(refs, state);
+        if (typeof state.refreshThumbScroller === "function") {
+          state.refreshThumbScroller();
+        }
+        setActiveItem(0);
       }
 
       document.addEventListener("DOMContentLoaded", init);

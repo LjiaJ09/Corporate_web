@@ -74,11 +74,6 @@ window.PRODUCT_DETAIL_DATA = Object.freeze({
       ],
       "variants": [
         {
-          "model": "车型",
-          "config_raw": "配置",
-          "note_raw": "备注"
-        },
-        {
           "model": "新龟王靠背",
           "config_raw": "电机：800W\n轮胎：3.0宽轮胎\n控制器：12管控制器\n减震：精品液压阻尼减震\n电池：60/20 Ah\n高亮大灯 超大坐桶、PU烤漆\n液晶仪表\n制动系统：前碟后毂",
           "note_raw": "含充电器、含铅酸电池：60/20 Ah 、40尺SKD纸箱打包加：120台"
@@ -315,8 +310,90 @@ window.PRODUCT_DETAIL_DATA = Object.freeze({
       ],
       "rawParams": "UNISOC T107双SIM卡显示屏：2.4英寸屏幕；分辨率240×320；支持网络：G4+W18+L1/3/5/8/38/40/41-120MHz；尺寸： TBD ；重量： TBD ；内存：48GB RAM+128GB存储（支持4G网络）；摄像头：0.08MP；电池：5C 1700mAh/2000mAh； SPK ：F2030；3合1多媒体功能：支持MP3/MP4播放。",
       "images": [
-        "./素材信息/手机/手机照片.png",
-        "./素材信息/手机/手机照片.png"
+        {
+          "src": "./素材信息/手机/Snipaste_2026-05-28_20-24-22.png",
+          "optimizedSrc": "./assets/optimized/phones/Snipaste_2026-05-28_20-24-22.jpg",
+          "thumbSrc": "./assets/optimized/phones/thumbs/Snipaste_2026-05-28_20-24-22.jpg",
+          "model": "F131"
+        },
+        {
+          "src": "./素材信息/手机/Snipaste_2026-05-28_20-24-57.png",
+          "optimizedSrc": "./assets/optimized/phones/Snipaste_2026-05-28_20-24-57.jpg",
+          "thumbSrc": "./assets/optimized/phones/thumbs/Snipaste_2026-05-28_20-24-57.jpg",
+          "model": "Senior C150"
+        },
+        {
+          "src": "./素材信息/手机/Snipaste_2026-05-28_20-25-02.png",
+          "optimizedSrc": "./assets/optimized/phones/Snipaste_2026-05-28_20-25-02.jpg",
+          "thumbSrc": "./assets/optimized/phones/thumbs/Snipaste_2026-05-28_20-25-02.jpg",
+          "model": "T78"
+        },
+        {
+          "src": "./素材信息/手机/Snipaste_2026-05-28_20-25-06.png",
+          "optimizedSrc": "./assets/optimized/phones/Snipaste_2026-05-28_20-25-06.jpg",
+          "thumbSrc": "./assets/optimized/phones/thumbs/Snipaste_2026-05-28_20-25-06.jpg",
+          "model": "C2"
+        },
+        {
+          "src": "./素材信息/手机/Snipaste_2026-05-28_20-25-10.png",
+          "optimizedSrc": "./assets/optimized/phones/Snipaste_2026-05-28_20-25-10.jpg",
+          "thumbSrc": "./assets/optimized/phones/thumbs/Snipaste_2026-05-28_20-25-10.jpg",
+          "model": "J82B"
+        },
+        {
+          "src": "./素材信息/手机/Snipaste_2026-05-28_20-25-14.png",
+          "optimizedSrc": "./assets/optimized/phones/Snipaste_2026-05-28_20-25-14.jpg",
+          "thumbSrc": "./assets/optimized/phones/thumbs/Snipaste_2026-05-28_20-25-14.jpg",
+          "model": "J82A"
+        },
+        {
+          "src": "./素材信息/手机/Snipaste_2026-05-28_20-25-18.png",
+          "optimizedSrc": "./assets/optimized/phones/Snipaste_2026-05-28_20-25-18.jpg",
+          "thumbSrc": "./assets/optimized/phones/thumbs/Snipaste_2026-05-28_20-25-18.jpg",
+          "model": "P1"
+        },
+        {
+          "src": "./素材信息/手机/Snipaste_2026-05-28_20-25-21.png",
+          "optimizedSrc": "./assets/optimized/phones/Snipaste_2026-05-28_20-25-21.jpg",
+          "thumbSrc": "./assets/optimized/phones/thumbs/Snipaste_2026-05-28_20-25-21.jpg",
+          "model": "P4"
+        },
+        {
+          "src": "./素材信息/手机/Snipaste_2026-05-28_20-25-25.png",
+          "optimizedSrc": "./assets/optimized/phones/Snipaste_2026-05-28_20-25-25.jpg",
+          "thumbSrc": "./assets/optimized/phones/thumbs/Snipaste_2026-05-28_20-25-25.jpg",
+          "model": "F1"
+        },
+        {
+          "src": "./素材信息/手机/Snipaste_2026-05-28_20-25-29.png",
+          "optimizedSrc": "./assets/optimized/phones/Snipaste_2026-05-28_20-25-29.jpg",
+          "thumbSrc": "./assets/optimized/phones/thumbs/Snipaste_2026-05-28_20-25-29.jpg",
+          "model": "P3"
+        },
+        {
+          "src": "./素材信息/手机/Snipaste_2026-05-28_20-25-33.png",
+          "optimizedSrc": "./assets/optimized/phones/Snipaste_2026-05-28_20-25-33.jpg",
+          "thumbSrc": "./assets/optimized/phones/thumbs/Snipaste_2026-05-28_20-25-33.jpg",
+          "model": "P2"
+        },
+        {
+          "src": "./素材信息/手机/Snipaste_2026-05-28_20-25-36.png",
+          "optimizedSrc": "./assets/optimized/phones/Snipaste_2026-05-28_20-25-36.jpg",
+          "thumbSrc": "./assets/optimized/phones/thumbs/Snipaste_2026-05-28_20-25-36.jpg",
+          "model": "F130"
+        },
+        {
+          "src": "./素材信息/手机/Snipaste_2026-05-28_20-25-41.png",
+          "optimizedSrc": "./assets/optimized/phones/Snipaste_2026-05-28_20-25-41.jpg",
+          "thumbSrc": "./assets/optimized/phones/thumbs/Snipaste_2026-05-28_20-25-41.jpg",
+          "model": "T62A"
+        },
+        {
+          "src": "./素材信息/手机/Snipaste_2026-05-28_20-25-44.png",
+          "optimizedSrc": "./assets/optimized/phones/Snipaste_2026-05-28_20-25-44.jpg",
+          "thumbSrc": "./assets/optimized/phones/thumbs/Snipaste_2026-05-28_20-25-44.jpg",
+          "model": "J88"
+        }
       ],
       "docs": [],
       "variants": [],
@@ -334,23 +411,43 @@ window.PRODUCT_DETAIL_DATA = Object.freeze({
       "industry": "3C",
       "name": "蓝牙音箱",
       "coreFeatures": [
-        "尺寸：226×136×212mm",
-        "重量：954克",
         "蓝牙5.4",
         "深沉低音与水晶般清澈的音质",
-        "真无线耳机接口",
-        "USB插槽 / TF卡槽 / FM收音机",
-        "AUX输入接口 / 免提功能",
-        "Type-C充电接口"
+        "TWS真无线立体声",
+        "USB播放 / TF卡 / FM收音机",
+        "AUX输入 / 免提功能",
+        "Type-C充电",
+        "RGB灯效"
       ],
-      "rawParams": "226×136×212毫米；产品重量：954克；功能：蓝牙5.4、深沉低音与水晶般清澈的音质、真无线耳机接口、USB插槽、TF卡槽、FM收音机、AUX输入接口、免提功能、Type-C充电接口。",
+      "rawParams": "蓝牙5.4；深沉低音与水晶般清澈的音质；TWS真无线立体声；USB播放；TF卡；FM收音机；AUX输入；免提功能；Type-C充电；RGB灯效。",
       "images": [
-        "./素材信息/蓝牙音箱/图片6.png"
+        "./素材信息/蓝牙音箱/HYP200_pro.png",
+        "./素材信息/蓝牙音箱/HY-R16_pro.png",
+        "./素材信息/蓝牙音箱/HY-P60_pro.png"
       ],
       "docs": [
         "./素材信息/蓝牙音箱/音箱2026.pdf"
       ],
-      "variants": [],
+      "variants": [
+        {
+          "model": "HYP200",
+          "category": "户外派对音箱",
+          "config_raw": "输出功率：60W (10W×2 + 20W×2)\n电池：7.4V 4000mAh × 2\n尺寸：337 × 148 × 205 mm\n重量：2542 g\n防水设计\n适用场景：户外、派对、露营",
+          "note_raw": "大功率、长续航、防水设计"
+        },
+        {
+          "model": "HY-R16",
+          "category": "条形音箱",
+          "config_raw": "输出功率：8W × 2\n电池：1200 mAh\n尺寸：375 × 66 × 65 mm\n重量：620 g\n适用场景：桌面、游戏、电视音频",
+          "note_raw": "紧凑设计，适合桌面使用"
+        },
+        {
+          "model": "HY-P60",
+          "category": "便携式音箱",
+          "config_raw": "输出功率：20W (10W × 2)\n电池：3600 mAh\n尺寸：322 × 115 × 155 mm\n重量：1281 g\n防水设计\n适用场景：日常、旅行、室内外",
+          "note_raw": "轻巧便携，多场景适用"
+        }
+      ],
       "missingFields": [
         "SKU",
         "price_or_moq",
