@@ -620,8 +620,23 @@ a { color: inherit; text-decoration: none; }
 @media (max-width: 760px) {
   .page { width: 100%; }
   .header-top { padding: 14px 12px 10px; gap: 10px; }
-  .brand { gap: 10px; }
-  .brand-logo { width: 56px; height: 56px; }
+  .brand {
+    width: 100%;
+    gap: 8px;
+  }
+  .brand-logo { width: 44px; height: 44px; }
+  .brand-text {
+    flex: 1;
+  }
+  .brand-text strong {
+    font-size: 1.75rem;
+    line-height: 1.08;
+  }
+  .brand-text small {
+    margin-top: 3px;
+    font-size: 0.98rem;
+    line-height: 1.05;
+  }
   .hotline strong { font-size: 1.35rem; }
   .site-nav { padding-inline: 0; }
   .page-main > .panel,
@@ -686,4 +701,20 @@ a { color: inherit; text-decoration: none; }
   .environment-card img { height: 190px; }
   .contact-item { padding: 12px 14px; }
   .contact-item { flex-direction: column; align-items: flex-start; }
+}
+
+@media (max-width: 360px) {
+  .brand {
+    gap: 6px;
+  }
+  .brand-logo {
+    width: 40px;
+    height: 40px;
+  }
+  .brand-text strong {
+    font-size: 1.55rem;
+  }
+  .brand-text small {
+    font-size: 0.86rem;
+  }
 }
