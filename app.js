@@ -46,6 +46,7 @@
     var date = document.createElement("span");
     var text = null;
     var thumb = null;
+    var thumbImage = null;
     var arrow = null;
 
     article.className = isFeatured ? "news-card is-active" : "news-card";
@@ -66,7 +67,13 @@
       thumb.className = "news-thumb";
 
       if (item.image) {
-        thumb.style.backgroundImage = "url('" + item.image + "')";
+        thumbImage = document.createElement("img");
+        thumbImage.className = "news-thumb-image";
+        thumbImage.src = item.image;
+        thumbImage.alt = item.title;
+        thumbImage.loading = "lazy";
+        thumbImage.decoding = "async";
+        thumb.appendChild(thumbImage);
       }
 
       text = document.createElement("p");
@@ -115,6 +122,7 @@
       imageElement.src = item.image;
       imageElement.alt = item.name;
       imageElement.loading = "lazy";
+      imageElement.decoding = "async";
       imageElement.addEventListener("error", function () {
         image.classList.remove("has-photo");
         image.innerHTML = "";
@@ -324,6 +332,33 @@
     heroSection.addEventListener("mouseleave", onPointerUp);
   }
 
+  // 滚动动画观察器
+  function initScrollAnimations() {
+    var sections = document.querySelectorAll('.fade-in-section');
+
+    if ('IntersectionObserver' in window) {
+      var observer = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-visible');
+          }
+        });
+      }, {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px'
+      });
+
+      sections.forEach(function (section) {
+        observer.observe(section);
+      });
+    } else {
+      // 降级处理：直接显示所有内容
+      for (var i = 0; i < sections.length; i += 1) {
+        sections[i].classList.add('is-visible');
+      }
+    }
+  }
+
   function render() {
     var data = getData();
     var heroSection = document.getElementById("home");
@@ -393,6 +428,17 @@
       aboutText.textContent = data.about.summary;
     }
 
+    (function () {
+      var aboutActions = document.getElementById("aboutActions");
+      if (!aboutActions) return;
+      var link = document.createElement("a");
+      link.className = "btn-about-more";
+      link.href = "./about.html";
+      link.textContent = "了解更多";
+      link.setAttribute("data-after", "→");
+      aboutActions.appendChild(link);
+    })();
+
     for (i = 0; i < data.products.length; i += 1) {
       if (productsGrid) {
         productsGrid.appendChild(createProductCard(data.products[i]));
@@ -403,6 +449,23 @@
       if (contactList) {
         contactList.appendChild(createContactItem(data.contacts[i]));
       }
+    }
+
+    // 初始化滚动动画
+    initScrollAnimations();
+
+    // Hero 图片加载动画
+    var heroSection = document.querySelector('.hero');
+    var heroImg = document.querySelector('.hero-image');
+    if (heroSection && heroImg) {
+      setTimeout(function() {
+        heroSection.classList.add('zooming');
+      }, 100);
+
+      heroImg.addEventListener('animationend', function() {
+        heroSection.classList.remove('zooming');
+        heroSection.classList.add('zoomed');
+      });
     }
   }
 

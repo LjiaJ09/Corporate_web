@@ -396,7 +396,92 @@ window.PRODUCT_DETAIL_DATA = Object.freeze({
         }
       ],
       "docs": [],
-      "variants": [],
+      "variants": [
+        {
+          "model": "F131",
+          "category": "4G RTOS 翻盖机",
+          "config_raw": "芯片：UNISOC T107\nSIM：双SIM\n显示：1.77+2.4英寸，128×160\n网络：4G Band 1/3/7/8/20；3G 900/2100；GSM/GPRS 900/1800MHz\n尺寸：TBD\n重量：TBD\n内存：RAM 32MB + ROM 32MB\n摄像头：0.08MP\n电池：1000mAh\n喇叭：2030\n按键：SOS KEY\n多媒体：MP3/MP4\nT卡：最大支持 8GB\n收音机：FM",
+          "note_raw": "-"
+        },
+        {
+          "model": "Senior C150",
+          "category": "4G RTOS 老人机",
+          "config_raw": "芯片：UNISOC T107\nSIM：双SIM\n显示：1.77英寸，128×160\n网络：4G Band 1/3/7/8/20；3G 900/2100；GSM/GPRS 900/1800MHz\n尺寸：TBD\n重量：TBD\n内存：RAM 32MB + ROM 32MB\n摄像头：0.08MP\n电池：1000mAh\n喇叭：2030\n按键：SOS KEY\nHAC：支持 HAC 认证\n底座：支持底座充电\n多媒体：MP3/MP4\nT卡：最大支持 8GB\n收音机：FM",
+          "note_raw": "-"
+        },
+        {
+          "model": "T78",
+          "category": "4G RTOS 直板机",
+          "config_raw": "芯片：UNISOC T107\nSIM：双SIM\n显示：2.4英寸，240×320\n网络：G4+W18+L1/3/5/8/38/40/41-120M\n尺寸：127×51.5×13.2mm\n重量：TBD\n内存：RAM 48MB + ROM 128MB（4G）\n摄像头：0.08MP\n电池：5C 1700mAh / 2000mAh\n喇叭：F2030 3in1\n多媒体：MP3/MP4\nT卡：最大支持 32GB\n收音机：FM optional",
+          "note_raw": "-"
+        },
+        {
+          "model": "C2",
+          "category": "4G Android 功能机",
+          "config_raw": "芯片：MTK 6739WW\n系统：Android 11\nSIM：双SIM\n触控：G+F\n显示：2.4英寸 QVGA\n网络：GSM+3G+4G；850/900/1800/1900MHz；900/2100；4G 1/3/5/7/8/20\n内存：RAM 1GB + ROM 8GB\n摄像头：2M + VGA\n电池：1850mAh（4L plus）\n喇叭：2030mm\n收音机：FM wireless\n尺寸：126×52.5×14mm\n充电器：5V 500mA fullwave，无耳机",
+          "note_raw": "-"
+        },
+        {
+          "model": "J82B",
+          "category": "4G Android 功能机",
+          "config_raw": "芯片：MTK 6739WA\n系统：Android 11\nSIM：双SIM\n触控：G+F\n显示：2.8英寸 QVGA\n网络：GSM+3G+4G；850/900/1800/1900MHz；900/2100；4G 1/3/5/7/8/20\n内存：RAM 1GB + ROM 8GB\n摄像头：2M + VGA\n电池：2500mAh\n喇叭：2030mm\n特色：双强光灯，200mA 以上\n收音机：FM wireless\n尺寸：126×52.5×15mm\n按键：APP shortcut key\n充电器：5V 500mA fullwave，无耳机",
+          "note_raw": "-"
+        },
+        {
+          "model": "J82A",
+          "category": "4G Android 功能机",
+          "config_raw": "芯片：MTK 6739WA\n系统：Android 11\nSIM：双SIM\n触控：G+F\n显示：2.8英寸 QVGA\n网络：GSM+3G+4G；850/900/1800/1900MHz；900/2100；4G 1/3/5/7/8/20\n内存：RAM 1GB + ROM 8GB\n摄像头：2M + VGA\n电池：2500mAh\n喇叭：2030mm\n特色：双强光灯，200mA 以上\n收音机：FM wireless\n尺寸：126×52.5×15mm\n按键：APP shortcut key\n充电器：5V 500mA fullwave，无耳机",
+          "note_raw": "-"
+        },
+        {
+          "model": "P1",
+          "category": "4G Android 触屏机",
+          "config_raw": "芯片：MTK 6739WW\n系统：Android 11/8.1\nSIM：3 in 3 卡槽\n显示：2.8英寸 HVGA IPS，460×680\n网络：2G+3G+4G（B1/B3/B7/B8/B20）；850/900/1800/1900MHz\n内存：RAM 2GB + ROM 16GB\n摄像头：后置 5MP + 前置 2MP\n电池：2150mAh 内置\n喇叭：1511 BOX speaker\n功能：WIFI / GPS\n触控：Lamination TP\n装配：Conneting PIN for assembling",
+          "note_raw": "-"
+        },
+        {
+          "model": "P4",
+          "category": "4G Android 触屏机",
+          "config_raw": "芯片：MTK 6762 / 6735 Octacore\n系统：Android 11/12\nSIM：3 in 3 卡槽\n显示：3.5英寸 HVGA IPS，460×680\n网络：2G+3G+4G（B1/B3/B7/B8/B20）；850/900/1800/1900MHz\n内存：RAM 2GB + ROM 16GB\n摄像头：后置 5MP + 前置 2MP\n电池：2500mAh 内置\n喇叭：1712 BOX speaker\n功能：WIFI / GPS",
+          "note_raw": "-"
+        },
+        {
+          "model": "F1",
+          "category": "4G Android 翻盖机",
+          "config_raw": "芯片：MTK 6739WW / 6762\n系统：Android 11/8.1\nSIM：3 in 3 卡槽\n显示：2.8英寸 HVGA + 1.77英寸副屏，460×680 IPS\n网络：2G+3G+4G（B1/B3/B7/B8/B20）；850/900/1800/1900MHz\n内存：RAM 2GB + ROM 16GB\n摄像头：后置 5MP + 前置 2MP\n电池：2150mAh 内置\n喇叭：1712 BOX speaker\n功能：WIFI / GPS",
+          "note_raw": "-"
+        },
+        {
+          "model": "P3",
+          "category": "4G Android 触屏机",
+          "config_raw": "芯片：MTK 6739WW / 6762\n系统：Android 11/8.1\nSIM：3 in 3 卡槽\n显示：2.8英寸 HVGA IPS，460×680\n网络：2G+3G+4G（B1/B3/B7/B8/B20）；850/900/1800/1900MHz\n内存：RAM 2GB + ROM 16GB\n摄像头：后置 5MP + 前置 2MP\n电池：2150mAh 内置\n喇叭：1712 BOX speaker\n功能：WIFI / GPS",
+          "note_raw": "-"
+        },
+        {
+          "model": "P2",
+          "category": "4G Android 触屏机",
+          "config_raw": "芯片：MTK 6739WW / 6762\n系统：Android 11/12\nSIM：3 in 3 卡槽\n显示：2.8英寸 HVGA IPS，460×680\n网络：2G+3G+4G（B1/B3/B7/B8/B20）；850/900/1800/1900MHz\n内存：RAM 2GB + ROM 16GB\n摄像头：后置 5MP + 前置 2MP\n电池：2150mAh 内置\n喇叭：1712 BOX speaker\n功能：WIFI / GPS",
+          "note_raw": "-"
+        },
+        {
+          "model": "F130",
+          "category": "4G RTOS 翻盖机",
+          "config_raw": "芯片：UNISOC T107\nSIM：双SIM\n显示：1.77/2.4英寸，128×160\n网络：4G Band 1/3/7/8/20；3G 900/2100；GSM/GPRS 900/1800MHz\n尺寸：TBD\n重量：TBD\n内存：RAM 32MB + ROM 32MB\n摄像头：0.08MP\n电池：1000mAh\n喇叭：2030\n按键：SOS KEY\n多媒体：MP3/MP4\nT卡：最大支持 8GB\n收音机：FM",
+          "note_raw": "-"
+        },
+        {
+          "model": "T62A",
+          "category": "4G RTOS 超薄直板机",
+          "config_raw": "芯片：UNISOC T107（New chipset）\nSIM：双SIM\n显示：1.77英寸，128×160\n网络：4G+3G+2G\n尺寸：116×48×12.5mm\n重量：TBD\n内存：RAM 48MB + ROM 128MB\n摄像头：0.08MP\n电池：5C 1000mAh\n喇叭：2030，2in1 / 3in1\n键盘：Rubber Key optional\n多媒体：MP3/MP4\nT卡：最大支持 8GB\n收音机：FM",
+          "note_raw": "-"
+        },
+        {
+          "model": "J88",
+          "category": "4G Android 超薄直板机",
+          "config_raw": "芯片：UNISOC T127（New chipset）\nSIM：双SIM\n显示：2.8英寸，240×320\n网络：4G（B1/B3/B7/B8/B20）+3G+2G；850/900/1800/1900MHz\n内存：RAM 48MB + ROM 128MB\n摄像头：VGA MP\n电池：1500mAh 内置\n喇叭：1216mm\n收音机：FM wireless\n尺寸：133×55×8.8mm",
+          "note_raw": "-"
+        }
+      ],
       "missingFields": [
         "SKU",
         "price_or_moq",
@@ -421,9 +506,18 @@ window.PRODUCT_DETAIL_DATA = Object.freeze({
       ],
       "rawParams": "蓝牙5.4；深沉低音与水晶般清澈的音质；TWS真无线立体声；USB播放；TF卡；FM收音机；AUX输入；免提功能；Type-C充电；RGB灯效。",
       "images": [
-        "./素材信息/蓝牙音箱/HYP200_pro.png",
-        "./素材信息/蓝牙音箱/HY-R16_pro.png",
-        "./素材信息/蓝牙音箱/HY-P60_pro.png"
+        {
+          "model": "HYP200",
+          "src": "./素材信息/蓝牙音箱/HYP200_pro.png"
+        },
+        {
+          "model": "HY-R16",
+          "src": "./素材信息/蓝牙音箱/HY-R16_pro.png"
+        },
+        {
+          "model": "HY-P60",
+          "src": "./素材信息/蓝牙音箱/HY-P60_pro.png"
+        }
       ],
       "docs": [
         "./素材信息/蓝牙音箱/音箱2026.pdf"

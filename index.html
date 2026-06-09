@@ -8,7 +8,9 @@
     content="企业官网 Demo，展示公司简介、产品中心与联系方式，适合后续替换为正式内容。"
   />
   <title>企业官网 Demo</title>
+  <link rel="icon" href="./favicon.ico" sizes="any" />
   <link rel="stylesheet" href="./styles.css" />
+  <link rel="preload" as="image" href="./assets/optimized/home/hero-banner.jpg" />
   <script defer src="./site-data.js"></script>
   <script defer src="./app.js"></script>
 </head>
@@ -16,8 +18,8 @@
   <div class="page">
     <header class="site-header">
       <div class="header-top">
-        <a class="brand" href="#home" aria-label="返回首页">
-          <img class="brand-logo" src="assets/logo.png" alt="公司Logo">
+        <a class="brand" href="#" aria-label="返回首页">
+          <img class="brand-logo" src="./assets/optimized/home/logo.png" alt="公司Logo" decoding="async">
           <span class="brand-text">
             <strong data-company-name>深圳林益科技有限公司</strong>
             <small data-company-english>LINYI TECHNOLOGY</small>
@@ -25,7 +27,7 @@
         </a>
 
         <div class="header-tools">
-          <a href="#home">网站首页</a>
+          <a href="#">网站首页</a>
           <div class="hotline">
             <span>服务热线</span>
             <strong data-hotline>400-XXX-XXXX</strong>
@@ -34,8 +36,8 @@
       </div>
 
       <nav class="site-nav" aria-label="主导航">
-        <a class="is-active" href="#home">网站首页</a>
-        <a href="#about">公司简介</a>
+        <a class="is-active" href="#">网站首页</a>
+        <a href="./about.html">公司简介</a>
         <a href="#news">新闻动态</a>
         <a href="#products">产品中心</a>
         <a href="#environment">公司环境</a>
@@ -63,7 +65,7 @@
         </div>
 
         <div class="hero-visual" id="heroVisual" aria-label="品牌横幅展示">
-          <img class="hero-image" src="./assets/hero-banner.png" alt="品牌横幅" />
+          <img class="hero-image" src="./assets/optimized/home/hero-banner.jpg" alt="品牌横幅" fetchpriority="high" decoding="async" />
         </div>
 
         <button class="hero-nav-btn hero-nav-btn-prev" id="heroPrevBtn" type="button" aria-label="上一张横幅">‹</button>
@@ -71,7 +73,7 @@
         <div class="hero-indicators" id="heroIndicators" aria-label="横幅切换"></div>
       </section>
 
-      <section class="panel section-split" id="news">
+      <section class="panel section-split fade-in-section" id="news">
         <div class="section-column section-column-main">
           <div class="news-heading">
             <h2 class="news-title"><span class="news-title-lead">N</span>ews / 最新资讯</h2>
@@ -85,41 +87,41 @@
             <h2 class="news-title"><span class="news-title-lead">A</span>bout us / 关于我们</h2>
           </div>
           <div class="about-visual">
-            <img class="about-visual-img" src="./assets/about/about-us.png" alt="关于我们" loading="lazy" />
-            <span class="about-visual-badge">Brand</span>
+            <img class="about-visual-img" src="./assets/optimized/home/about-us.jpg" alt="关于我们" decoding="async" />
           </div>
           <p class="about-text" id="aboutText"></p>
+          <div class="about-actions" id="aboutActions"></div>
         </aside>
       </section>
 
-      <section class="panel" id="products">
+      <section class="panel fade-in-section" id="products">
         <div class="news-heading section-heading-wide">
           <h2 class="news-title"><span class="news-title-lead">P</span>roduct center / 产品中心</h2>
         </div>
         <div class="products-grid" id="productsGrid"></div>
       </section>
 
-      <section class="panel" id="environment">
+      <section class="panel fade-in-section" id="environment">
         <div class="news-heading section-heading-wide">
           <h2 class="news-title"><span class="news-title-lead">E</span>nvironment / 公司环境</h2>
         </div>
         <div class="environment-grid">
           <article class="environment-card">
-            <img src="./assets/generated-environment/environment-1.png" alt="公司环境图1" loading="lazy" />
+            <img src="./assets/optimized/environment/environment-1.jpg" alt="公司环境图1" loading="lazy" decoding="async" fetchpriority="low" />
           </article>
           <article class="environment-card">
-            <img src="./assets/generated-environment/environment-2.png" alt="公司环境图2" loading="lazy" />
+            <img src="./assets/optimized/environment/environment-2.jpg" alt="公司环境图2" loading="lazy" decoding="async" fetchpriority="low" />
           </article>
           <article class="environment-card">
-            <img src="./assets/generated-environment/environment-3.png" alt="公司环境图3" loading="lazy" />
+            <img src="./assets/optimized/environment/environment-3.jpg" alt="公司环境图3" loading="lazy" decoding="async" fetchpriority="low" />
           </article>
           <article class="environment-card">
-            <img src="./assets/generated-environment/environment-4.png" alt="公司环境图4" loading="lazy" />
+            <img src="./assets/optimized/environment/environment-4.jpg" alt="公司环境图4" loading="lazy" decoding="async" fetchpriority="low" />
           </article>
         </div>
       </section>
 
-      <section class="panel contact-panel" id="contact">
+      <section class="panel contact-panel fade-in-section" id="contact">
         <div class="news-heading section-heading-wide">
           <h2 class="news-title"><span class="news-title-lead">C</span>ontact us / 联系我们</h2>
         </div>
